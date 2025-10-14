@@ -1,3 +1,4 @@
+
 # SANYA SERVICIOS GENERALES S.A.C - Sitio Web
 
 Bienvenido al repositorio del sitio web oficial de **SANYA SERVICIOS GENERALES S.A.C**, una empresa dedicada a ofrecer productos naturales, frescos y saludables. Este sitio web está construido con [Astro](https://astro.build/), un framework moderno para sitios web estáticos y dinámicos, enfocado en rendimiento, SEO y facilidad de mantenimiento.
@@ -26,7 +27,6 @@ El sitio está diseñado para ser responsivo, accesible y optimizado para motore
 
 ## 🏗️ Estructura del Proyecto
 
-```
 mi-proyecto-astro/
 ├── .astro/                 # Archivos generados por Astro (ignorar en Git)
 ├── .vscode/                # Configuración de VSCode (ignorar en Git)
@@ -88,7 +88,7 @@ mi-proyecto-astro/
 ├── README.md               # Este archivo
 ├── tsconfig.json           # Configuración de TypeScript
 └── .gitignore              # Archivos ignorados por Git
-```
+
 
 ### Explicación de Carpetas Clave
 - **public/**: Archivos servidos directamente (imágenes de productos, fuentes, favicon). Accesibles vía `/` en el navegador.
@@ -201,3 +201,5 @@ Para más ayuda, consulta la [documentación de Astro](https://docs.astro.build)
 - **Tecnologías**: Astro, MDX, TypeScript, CSS, Font Awesome.
 
 ¡Gracias por contribuir al crecimiento de SANYA SERVICIOS GENERALES S.A.C!
+
+
