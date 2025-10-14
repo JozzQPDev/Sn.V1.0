@@ -1,0 +1,454 @@
+---
+import { SITE_TITLE } from "../consts";
+import logo1 from "../assets/logo.png";
+import HeaderLink from "./HeaderLink.astro";
+---
+
+<header>
+  <nav>
+    <!-- LOGO + TÍTULO -->
+    <div class="logo">
+      <img src={logo1.src} alt="Sanya Logo" class="footer-logo" />
+      <h2><a href="/">{SITE_TITLE}</a></h2>
+    </div>
+
+    <!-- BOTÓN HAMBURGUESA -->
+    <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- OVERLAY -->
+    <div class="sidebar-overlay"></div>
+
+    <!-- MENÚ LATERAL -->
+    <div class="internal-links">
+      <div class="sidebar-top-section">
+        <p class="sidebar-title">Sanya Servicios Generales S.A.C</p>
+      </div>
+
+      <HeaderLink href="/" class="nav-item-with-chevron"
+        >Inicio <i class="fa-solid fa-chevron-right"></i></HeaderLink
+      >
+      <HeaderLink href="/productos" class="nav-item-with-chevron"
+        >Productos <i class="fa-solid fa-chevron-right"></i></HeaderLink
+      >
+      <HeaderLink href="/about" class="nav-item-with-chevron"
+        >Sobre Nosotros <i class="fa-solid fa-chevron-right"></i></HeaderLink
+      >
+
+      <hr class="sidebar-divider" />
+
+      <p class="sidebar-info-text">
+        Desde 2020 llevamos salud y calidad a tu mesa, apoyando a productores
+        locales y ofreciendo productos naturales frescos, con frescura,
+        nutrición y compromiso.
+      </p>
+
+      <hr class="sidebar-divider" />
+
+      <div class="sidebar-bottom-nav">
+        <a
+          href="https://www.facebook.com/profile.php?id=61581245800578&sk=about_profile_transparency"
+          target="_blank"
+          aria-label="Facebook"
+        >
+          <i class="fa-brands fa-facebook-f"></i>
+        </a>
+        <a href="/" aria-label="Instagram">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a
+          href="https://wa.me/51997307782?text=Hola,%20quiero%20más%20información%20sobre%20sus%20productos"
+          target="_blank"
+          aria-label="WhatsApp"
+        >
+          <i class="fa-brands fa-whatsapp"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- REDES SOCIALES EN DESKTOP -->
+    <div class="social-links">
+      <a
+        href="https://www.facebook.com/profile.php?id=61581245800578&sk=about_profile_transparency"
+        target="_blank"
+        aria-label="Facebook"
+      >
+        <i class="fa-brands fa-facebook-f"></i>
+      </a>
+      <a href="/" aria-label="Instagram">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+      <a  href="https://wa.me/51997307782?text=Hola,%20quiero%20más%20información%20sobre%20sus%20productos" target="_blank" aria-label="WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+      </a>
+    </div>
+  </nav>
+</header>
+
+<!-- FONT AWESOME -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+
+<style>
+  :root {
+    --primary-green: #2e8b57;
+    --primary-gold: #ffc107;
+    --text-dark: #333;
+    --pure-white: #fff;
+    --premium-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    --premium-shadow-heavy: 0 0 30px rgba(0, 0, 0, 0.2);
+    --transition-smooth: all 0.3s ease;
+    --premium-border: 1px solid #eee;
+  }
+
+  header {
+    margin: 0;
+    padding: 0 2em;
+    background: var(--pure-white);
+    box-shadow: var(--premium-shadow);
+    backdrop-filter: blur(10px);
+    border-bottom: var(--premium-border);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: var(--transition-smooth);
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: 1.4em;
+    font-weight: 700;
+  }
+
+  .footer-logo {
+    height: 90px;
+    border-radius: 50%;
+    transition:
+      transform 0.4s ease,
+      filter 0.4s ease;
+    filter: drop-shadow(0 4px 8px rgba(46, 139, 87, 0.2));
+  }
+
+  .footer-logo:hover {
+    transform: rotate(5deg) scale(1.08);
+    filter: drop-shadow(0 6px 14px rgba(46, 139, 87, 0.35));
+  }
+
+  /* LINKS DESKTOP */
+  .internal-links {
+    display: flex;
+    gap: 2em;
+    align-items: center;
+  }
+
+  .sidebar-top-section,
+  .menu-close-btn,
+  .sidebar-info-text,
+  .sidebar-divider,
+  .sidebar-bottom-nav,
+  .nav-item-with-chevron i,
+  .sidebar-overlay {
+    display: none;
+  }
+
+  nav a {
+    padding: 1.5em 0.5em;
+    color: var(--text-dark);
+    border-bottom: 3px solid transparent;
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    transition: var(--transition-smooth);
+  }
+
+  nav a::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(
+      90deg,
+      var(--primary-green),
+      var(--primary-gold)
+    );
+    transform: translateX(-50%);
+    transition: width 0.4s ease;
+  }
+
+  nav a:hover::after,
+  nav a.active::after {
+    width: 100%;
+  }
+
+  nav a:hover {
+    color: var(--primary-gold);
+  }
+
+  .social-links {
+    display: flex;
+    gap: 1em;
+  }
+
+  .social-links a i {
+    font-size: 1.59rem; /* Aumenta este valor a tu gusto */
+    transition:
+      transform 0.3s ease,
+      color 0.3s ease;
+  }
+
+  .social-links a:hover i {
+    color: var(--primary-gold);
+    transform: scale(1.4);
+  }
+
+  /* MENÚ HAMBURGUESA */
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1100;
+  }
+
+  .menu-toggle span {
+    width: 100%;
+    height: 3px;
+    background: var(--text-dark);
+    border-radius: 3px;
+    transition: all 0.4s ease;
+  }
+
+  .menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+  }
+
+  /* MOBILE */
+  @media (max-width: 480px) {
+    .social-links {
+      display: none;
+    }
+
+    .logo {
+      gap: 0.1em;
+      font-size: 0.9em;
+      align-items: center;
+      margin-right: auto;
+    }
+
+    .internal-links {
+      flex-direction: column;
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 60%;
+      height: 100vh;
+      background: var(--pure-white);
+      padding: 1.5em;
+      gap: 1px;
+      transition: right 0.4s ease;
+      box-shadow: var(--premium-shadow-heavy);
+      z-index: 1050;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .internal-links.active {
+      right: 0;
+    }
+
+    .sidebar-overlay {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1040;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease;
+    }
+
+    .sidebar-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .sidebar-top-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 2em;
+    }
+
+    .sidebar-title {
+      font-size: 1.25em;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin: 0;
+    }
+
+    .menu-close-btn {
+      display: block;
+      background: none;
+      border: none;
+      font-size: 1.8em;
+      color: var(--text-dark);
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .menu-close-btn:hover {
+      color: var(--primary-green);
+    }
+
+    nav a {
+      padding: 1em 0.5em;
+      font-size: 1.1em;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5em;
+      border-bottom: none;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--primary-green);
+    }
+
+    nav a::after {
+      display: none;
+    }
+
+    .nav-item-with-chevron i {
+      display: block;
+      font-size: 0.8em;
+      color: #ccc;
+    }
+
+    .sidebar-divider {
+      display: block;
+      width: 100%;
+      border: none;
+      border-top: 1px solid #eee;
+      margin: 1.5em 0;
+    }
+
+    .sidebar-info-text {
+      display: block;
+      font-size: 0.9em;
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 1.5em;
+      padding: 0 0.5em;
+    }
+
+    .sidebar-bottom-nav {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 100%;
+      padding: 1em 0;
+      border-top: var(--premium-border);
+      background: var(--pure-white);
+      margin-top: auto;
+      box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .sidebar-bottom-nav a {
+      font-size: 1.5em;
+      color: #999;
+      padding: 0.5em;
+      transition: color 0.3s ease;
+    }
+
+    .sidebar-bottom-nav a:hover {
+      color: var(--primary-green);
+    }
+
+    .menu-toggle {
+      display: flex;
+    }
+  }
+</style>
+
+<script>
+  const toggle = document.querySelector(".menu-toggle");
+  const links = document.querySelector(".internal-links");
+  const overlay = document.querySelector(".sidebar-overlay");
+  const internalLinks = document.querySelectorAll(".internal-links a");
+  const closeBtn = document.querySelector(".menu-close-btn");
+
+  function closeMenu() {
+    // Usamos el encadenamiento opcional (?) para llamar a métodos solo si el elemento existe
+    links?.classList.remove("active");
+    toggle?.classList.remove("active");
+    overlay?.classList.remove("active");
+  }
+
+  // El bloque principal de activación/desactivación
+  if (toggle && links && overlay) {
+    toggle.addEventListener("click", () => {
+      // Como ya comprobamos que existen arriba, los podemos usar de forma segura
+      links.classList.toggle("active");
+      toggle.classList.toggle("active");
+      overlay.classList.toggle("active");
+    });
+  }
+
+  // Agrega el evento de clic para cerrar el menú haciendo clic en el overlay
+  overlay?.addEventListener("click", closeMenu);
+
+  closeBtn?.addEventListener("click", closeMenu); // Uso de encadenamiento opcional
+
+  if (internalLinks.length > 0) {
+    internalLinks.forEach((link) => {
+      // Asegúrate de que los links en la barra inferior no cierren el menú si no lo quieres
+      if (!link.closest(".sidebar-bottom-nav")) {
+        link.addEventListener("click", closeMenu);
+      }
+    });
+  }
+</script>

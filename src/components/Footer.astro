@@ -1,0 +1,286 @@
+---
+// Script de Componente (Frontmatter)
+const today = new Date();
+// Astro maneja las importaciones de imágenes (Vite Asset Handling)
+import logo1 from "../assets/logo.png"; 
+import BaseHead from "../components/BaseHead.astro";
+
+// Definición de colores de acento (Monocromático Claro)
+const ACCENT_COLOR = '#1e1e1e'; // Gris Muy Oscuro
+const TEXT_COLOR = '#333333'; // Gris Oscuro
+const SECONDARY_TEXT_COLOR = '#666666'; // Gris Medio
+const BG_COLOR = '#f8f8f8'; // Fondo Gris Muy Claro
+const COLUMN_BG_COLOR = '#ffffff'; // Fondo de Columna Blanco Puro
+---
+
+<head>
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    />
+
+    </head>
+
+
+<footer class="footer-custom">
+  <div class="footer-container">
+    <div class="footer-column logo-info">
+      <img src={logo1.src} alt="Sanya Logo" class="footer-logo" />
+      <div class="company-info">
+        <h3>SANYA SERVICIOS GENERALES S.A.C</h3>
+        <p>
+          Dirección: Calle Nazareno Nro. 136 (2do pasaje) Ayacucho - Huamanga -
+          Ayacucho
+        </p>
+        <p>Atención al cliente: 956321629 - 999922262 - 990981711</p>
+      </div>
+    </div>
+
+    <div class="footer-column">
+      <h4>Síguenos</h4>
+      <div class="social-links">
+        <ul>
+          <li>
+            <a
+              href="https://web.facebook.com/profile.php?id=61581245800578"
+              target="_blank"
+              aria-label="Facebook"
+            >
+              <i class="fab fa-facebook-f"></i> Facebook
+            </a>
+          </li>
+          <li>
+            <a
+              href="/"
+              aria-label="Instagram"
+            >
+              <i class="fab fa-instagram"></i> Instagram
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://wa.me/51997307782?text=Hola,%20quiero%20más%20información%20sobre%20sus%20productos"
+              target="_blank"
+              aria-label="WhatsApp"
+            >
+              <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-column">
+      <h4>Encuéntranos</h4>
+      <ul>
+        <li><a href="/about#ubicacion">Tiendas</a></li>
+        <li><a href="/about#ubicacion">Ubícanos</a></li>
+        <li><a href="/about">Sobre nosotros</a></li>
+        <li><a href="https://wa.me/51997307782?text=Hola,%20quiero%20más%20información%20sobre%20sus%20productos">Contáctanos</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    &copy; {today.getFullYear()} SANYA SERVICIOS GENERALES S.A.C. Todos los derechos
+    reservados
+    <p>Desarrollado por <a href="#">Jhon03-bit</a></p>
+  </div>
+</footer>
+
+<style>
+  /* Astro aplicará estos estilos automáticamente al componente (CSS scoping) */
+  .footer-custom {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    padding: 50px 20px 30px 20px;
+    font-family: "Arial", sans-serif;
+    text-align: center;
+  }
+  
+  /* Usando variables CSS definidas en el frontmatter de Astro, si usaste las const */
+  :root {
+      /* Puedes definir tus colores globales o usar las constantes de JS */
+      --accent-color: #1e1e1e;
+      --text-color: #333333;
+      --secondary-text-color: #666666;
+      --bg-color: #f8f8f8;
+      --column-bg-color: #ffffff;
+  }
+
+  /* ... (El resto de tus estilos CSS, usando las variables de CSS) ... */
+
+  .footer-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-bottom: 1px solid #cccccc;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+  }
+
+  .footer-column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    margin: 25px;
+    min-width: 250px;
+    background-color: var(--column-bg-color);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    flex: 1;
+  }
+
+  .footer-column:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .logo-info {
+    flex: 2;
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+  }
+
+  .footer-logo {
+    height: 90px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    transition: transform 0.3s;
+  }
+
+  .footer-logo:hover {
+    transform: rotate(10deg) scale(1.05);
+  }
+
+  .company-info h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.2rem;
+    color: var(--text-color);
+  }
+
+  .company-info p {
+    margin: 4px 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--secondary-text-color);
+  }
+
+  .footer-column h4 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: var(--text-color);
+    position: relative;
+  }
+
+  .footer-column h4::after {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 2px;
+    background-color: var(--accent-color);
+    margin-top: 4px;
+    transition: width 0.3s;
+  }
+
+  .footer-column:hover h4::after {
+    width: 100%;
+  }
+
+  .footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-column ul li {
+    margin-bottom: 10px;
+  }
+
+  .footer-column ul li a {
+    color: var(--secondary-text-color);
+    text-decoration: none;
+    display: flex;
+    font-size: 0.9rem;
+    align-items: center;
+    gap: 10px;
+    transition: color 0.3s, transform 0.3s;
+  }
+
+  .footer-column ul li a:hover {
+    color: var(--accent-color);
+    transform: translateX(5px);
+  }
+
+  .social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+  }
+
+  .social-links a {
+    font-size: 1.5rem;
+    color: var(--secondary-text-color);
+    transition: color 0.3s, transform 0.3s;
+  }
+
+  .social-links a:hover {
+    color: var(--accent-color);
+    transform: translateY(-4px);
+  }
+
+  .footer-bottom {
+    margin-top: 30px;
+    padding-top: 15px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #999999;
+  }
+
+  .footer-bottom a {
+    color: var(--accent-color);
+    text-decoration: none;
+  }
+
+  .footer-bottom a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .footer-container {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .footer-column {
+      align-items: center;
+      text-align: center;
+      margin: 10px 5px;
+    }
+
+    .footer-logo {
+      height: 60px;
+    }
+
+    .footer-column h4 {
+      font-size: 1rem;
+    }
+
+    .social-links a {
+      font-size: 1.3rem;
+    }
+
+    .footer-bottom {
+      font-size: 0.7rem;
+    }
+  }
+</style>

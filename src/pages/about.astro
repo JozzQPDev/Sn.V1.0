@@ -1,0 +1,1008 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <BaseHead
+      title={`${SITE_TITLE} - Sobre Nosotros`}
+      description={SITE_DESCRIPTION}
+    />
+  <style>
+      /* Variables de CSS y estilos base (asumo que están definidas fuera) */
+      body {
+        font-family: "Atkinson", sans-serif;
+        line-height: 1.7;
+        color: var(--text-dark);
+        padding-top: 110px; /* Espacio para el header fijo */
+        background: linear-gradient(
+          135deg,
+          var(--pure-white) 0%,
+          var(--neutral-light) 100%
+        );
+        background-attachment: fixed;
+      }
+
+      .about-ion {
+        padding: 60px 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+        animation: fadeInUp 0.8s ease-out;
+      }
+
+      .sobren-title {
+        display: block;
+        text-align: center;
+        font-size: 3.5rem;
+        margin-bottom: 4px;
+        color: var(--text-dark);
+        position: relative;
+        animation: slideInLeft 0.6s ease-out;
+      }
+
+      .sobren-title::after {
+        content: "";
+        display: block;
+        width: 150vh;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          var(--primary-green),
+          var(--primary-gold)
+        );
+        margin: 10px auto;
+      }
+
+      .about-banner {
+        text-align: center;
+        margin-bottom: 60px;
+        animation: fadeInUp 1s ease-out 0.3s both;
+      }
+
+      .about-banner h2 {
+        font-size: 2rem;
+        color: var(--text-dark);
+        margin-bottom: 20px;
+      }
+
+      .about-banner p {
+        font-size: 1.2rem;
+        color: var(--text-dark);
+        max-width: 600px;
+        margin: 0 auto;
+        opacity: 0.8;
+      }
+
+      /* MANTENER EL LAYOUT DE ESCRITORIO */
+      .about-story {
+        display: flex;
+        gap: 40px;
+        margin-bottom: 60px;
+        align-items: center;
+        animation: slideInLeft 0.8s ease-out 0.5s both;
+      }
+
+      .story-image {
+        /* Permite que el área de la imagen se comprima ligeramente */
+        flex-shrink: 0;
+        width: 40%; 
+      }
+      .story-text {
+        /* Permite que el texto ocupe el espacio restante */
+        flex-grow: 1;
+      }
+
+
+      .story-image img {
+        width: 100%;
+        max-width: 100%; /* Corregido: ya está dentro de un contenedor, 100% es suficiente */
+        height: auto; /* Asegura el aspecto */
+        border-radius: 12px;
+        box-shadow: var(--premium-shadow);
+        transition: var(--transition-smooth);
+      }
+
+      .story-image img:hover {
+        transform: scale(1.05);
+      }
+
+      .story-text h3 {
+        font-size: 1.8rem;
+        color: var(--text-dark);
+        margin-bottom: 20px;
+      }
+
+      .story-text p {
+        margin-bottom: 15px;
+        color: var(--text-dark);
+        opacity: 0.9;
+      }
+
+      /* Misión y Visión - Layout de escritorio */
+      .about-vision-mission {
+        display: flex;
+        gap: 40px;
+        margin-bottom: 60px;
+        animation: slideInRight 0.8s ease-out 0.7s both;
+      }
+
+      .vision-box,
+      .mission-box {
+        flex: 1;
+        background: var(--pure-white);
+        padding: 30px;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: var(--premium-shadow);
+        border: var(--premium-border);
+        transition: var(--transition-smooth);
+      }
+
+      .vision-box:hover,
+      .mission-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(46, 139, 87, 0.2);
+      }
+
+      .vision-box h3,
+      .mission-box h3 {
+        font-size: 1.5rem;
+        color: var(--text-dark);
+        margin-bottom: 15px;
+      }
+
+      .vision-box i,
+      .mission-box i {
+        font-size: 2.5rem;
+        color: var(--primary-green);
+        margin-bottom: 10px;
+        transition: var(--transition-smooth);
+      }
+
+      .vision-box:hover i,
+      .mission-box:hover i {
+        color: var(--primary-gold);
+        transform: scale(1.1);
+      }
+
+      .about-values {
+        margin-bottom: 60px;
+        animation: fadeInUp 0.8s ease-out 0.9s both;
+      }
+
+      .about-values h2 {
+        text-align: center;
+        font-size: 2rem;
+        color: var(--text-dark);
+        margin-bottom: 40px;
+      }
+
+      /* Grid de valores - Adaptable por defecto */
+      .values-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+      }
+
+      .value-item {
+        text-align: center;
+        padding: 30px;
+        background: var(--pure-white);
+        border-radius: 20px;
+        box-shadow: var(--premium-shadow);
+        border: var(--premium-border);
+        transition: var(--transition-smooth);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .value-item::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(
+          90deg,
+          var(--primary-green),
+          var(--primary-gold)
+        );
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+      }
+
+      .value-item:hover::before {
+        transform: scaleX(1);
+      }
+
+      .value-item:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(46, 139, 87, 0.2);
+      }
+
+      .value-item i {
+        font-size: 2.5rem;
+        color: var(--primary-green);
+        margin-bottom: 15px;
+        transition: var(--transition-smooth);
+      }
+
+      .value-item:hover i {
+        color: var(--primary-gold);
+        transform: scale(1.1);
+      }
+
+      .value-item h4 {
+        font-size: 1.3rem;
+        color: var(--text-dark);
+        margin-bottom: 15px;
+      }
+
+      .about-cta {
+        text-align: center;
+        padding: 40px;
+        background: linear-gradient(
+          135deg,
+          rgba(46, 139, 87, 0.1) 0%,
+          rgba(255, 140, 0, 0.1) 100%
+        );
+        border-radius: 20px;
+        animation: fadeInUp 0.8s ease-out 1.1s both;
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 60px; /* Añadido espacio inferior */
+      }
+
+      .about-cta::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")
+          repeat;
+        animation: patternMove 30s linear infinite;
+      }
+
+      .about-cta h3 {
+        font-size: 1.8rem;
+        color: var(--text-dark);
+        margin-bottom: 20px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .btn-premium {
+        display: inline-block;
+        padding: 16px 32px;
+        background: linear-gradient(
+          135deg,
+          var(--primary-green),
+          var(--primary-gold)
+        );
+        color: var(--pure-white);
+        font-size: 1.1rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: var(--transition-bounce);
+        box-shadow: var(--premium-shadow);
+        border: none;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+      }
+
+      .btn-premium::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent
+        );
+        transition: left 0.6s;
+      }
+
+      .btn-premium:hover::before {
+        left: 100%;
+      }
+
+      .btn-premium:hover {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 20px 40px rgba(46, 139, 87, 0.3);
+      }
+
+      .location-section {
+        padding: 60px 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+        background: linear-gradient(
+          135deg,
+          rgba(46, 139, 87, 0.05) 0%,
+          rgba(255, 140, 0, 0.05) 100%
+        );
+        border-radius: 20px;
+        margin-bottom: 60px;
+        animation: fadeInUp 0.8s ease-out 1.3s both;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .location-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")
+          repeat;
+        animation: patternMove 30s linear infinite;
+      }
+
+      .section-title1 {
+        display: block;
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 40px;
+        color: var(--text-dark);
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Layout de Ubicación - Grid de escritorio */
+      .location-content-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        align-items: start;
+        position: relative;
+        z-index: 1;
+      }
+
+      .location-map-details {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .map-container iframe {
+        width: 100%;
+        height: 300px;
+        border-radius: 12px;
+        box-shadow: var(--premium-shadow);
+      }
+
+      .location-details p {
+        margin-bottom: 10px;
+        color: var(--text-dark);
+        opacity: 0.9;
+      }
+
+      .location-details .btn-premium {
+        margin-top: 10px; /* Separación del botón */
+      }
+
+      .location-visual-reference {
+        text-align: center;
+      }
+
+      .carousel-container {
+        position: relative;
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: var(--premium-shadow);
+      }
+
+      .carousel-slide {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+      }
+
+      .carousel-slide img {
+        background: var(--neutral-light);
+        width: 100%; /* Importantísimo para el carrusel responsive */
+        height: 300px; /* Altura fija para escritorio/tablet grande */
+        object-fit: cover;
+        flex-shrink: 0;
+      }
+
+      .location-visual-reference h3 {
+        font-size: 1.2rem;
+        margin-top: 15px;
+        color: var(--text-dark);
+      }
+
+
+      .prev,
+      .next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(46, 139, 87, 0.8);
+        color: var(--pure-white);
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 50%;
+        transition: var(--transition-smooth);
+        z-index: 10;
+      }
+
+      .prev:hover,
+      .next:hover {
+        background: var(--primary-green);
+        transform: translateY(-50%) scale(1.1);
+      }
+
+      .prev {
+        left: 10px;
+      }
+
+      .next {
+        right: 10px;
+      }
+
+      .carousel-dots {
+        text-align: center;
+        margin-top: 10px;
+      }
+
+      .carousel-dots span {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        background: var(--neutral-light);
+        border-radius: 50%;
+        margin: 0 5px;
+        cursor: pointer;
+        transition: var(--transition-smooth);
+      }
+
+      .carousel-dots span.active {
+        background: var(--primary-green);
+        transform: scale(1.2);
+      }
+
+      .carousel-dots span:hover {
+        background: var(--primary-gold);
+      }
+
+
+      /* Animaciones */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slideInLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes slideInRight {
+        from {
+          opacity: 0;
+          transform: translateX(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes patternMove {
+        0% {
+          transform: translateX(0) translateY(0);
+        }
+        100% {
+          transform: translateX(60px) translateY(60px);
+        }
+      }
+
+      /*
+      /*******************************
+      /* Responsive Mejorado: Tablet y Escritorio Pequeño (Max 1024px)
+      /*******************************
+      */
+      @media (max-width: 1024px) {
+
+        /* Ajuste para que la imagen de la historia se apile primero en tablets grandes */
+        .about-story {
+          flex-direction: column; 
+          gap: 30px;
+          text-align: center;
+        }
+
+        .story-image {
+          width: 100%;
+        }
+
+        .story-text {
+          text-align: left; /* Mantener la alineación del texto normal */
+        }
+
+        .values-grid {
+          /* Asegura una buena distribución */
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+      }
+
+
+      /*
+      /*******************************
+      /* Responsive Mejorado: Tablet (Max 768px)
+      /*******************************
+      */
+      @media (max-width: 768px) {
+        body {
+          padding-top: 80px; /* Reducir el espacio superior */
+        }
+
+        .about-ion {
+          padding: 50px 20px;
+        }
+
+        .sobren-title {
+          font-size: 2.2rem;
+          margin-bottom: 35px;
+        }
+
+        .about-banner h2 {
+          font-size: 1.6rem;
+        }
+
+        .about-banner p {
+          font-size: 1.1rem;
+        }
+
+        .about-story {
+          /* Ya se apiló en 1024px, solo se mantienen los ajustes de espacio */
+          margin-bottom: 50px;
+        }
+
+        .story-text h3 {
+          font-size: 1.7rem;
+        }
+
+        /* Misión y Visión: Se apilan verticalmente */
+        .about-vision-mission {
+          flex-direction: column;
+          gap: 30px;
+          margin-bottom: 50px;
+        }
+        
+        /* Ubicación: Se apila verticalmente */
+        .location-content-grid {
+          display: flex; /* Cambiamos de grid a flex para una mejor pila */
+          flex-direction: column;
+          gap: 30px;
+        }
+
+        .location-map-details {
+          order: 2; /* Mueve el mapa y detalles debajo de la referencia visual */
+        }
+
+        .location-visual-reference {
+          order: 1; /* Mueve la referencia visual al principio */
+        }
+
+        .carousel-slide img {
+          height: 250px; /* Altura ajustada para tablet */
+        }
+
+        .location-section {
+          padding: 50px 20px;
+        }
+      }
+
+
+      /*
+      /*******************************
+      /* Responsive Mejorado: Móvil (Max 480px)
+      /* Nota: He consolidado tus estilos previos en esta sección y ajustado.
+      /*******************************
+      */
+      @media (max-width: 480px) {
+        body {
+          padding-top: 70px;
+        }
+
+        .about-ion {
+          padding: 40px 15px;
+        }
+
+        .sobren-title, .section-title1 {
+          font-size: 2rem;
+          margin-bottom: 30px;
+        }
+
+        .sobren-title::after {
+          width: 40vh;
+        }
+
+        .about-banner {
+          margin-bottom: 40px;
+        }
+
+        .about-banner h2 {
+          font-size: 1.5rem; /* Ajuste más adecuado para móvil */
+          margin-bottom: 15px;
+        }
+
+        .about-banner p {
+          font-size: 1rem;
+          max-width: 100%;
+        }
+
+        .about-story {
+          gap: 20px;
+          margin-bottom: 30px;
+        }
+        
+        .story-text h3 {
+          font-size: 1.5rem;
+          margin-bottom: 15px;
+        }
+
+        .story-text p {
+          font-size: 0.95rem;
+        }
+        
+        .about-vision-mission {
+          /* Ya se apila en 768px, solo ajustamos el espaciado */
+          gap: 20px;
+          margin-bottom: 30px;
+        }
+
+        .vision-box,
+        .mission-box {
+          padding: 20px;
+        }
+
+        .vision-box h3,
+        .mission-box h3 {
+          font-size: 1.3rem;
+        }
+
+        .about-values h2 {
+          font-size: 1.8rem;
+          margin-bottom: 30px;
+        }
+
+        .values-grid {
+          /* Forzamos a una sola columna para móviles pequeños */
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .value-item {
+          padding: 20px;
+        }
+
+        .value-item h4 {
+          font-size: 1.1rem;
+        }
+
+        .about-cta {
+          padding: 30px 15px;
+          margin-bottom: 40px;
+        }
+
+        .about-cta h3 {
+          font-size: 1.4rem;
+        }
+
+        .btn-premium {
+          padding: 12px 24px;
+          font-size: 0.95rem;
+        }
+
+        .location-section {
+          padding: 30px 15px;
+          margin-bottom: 30px;
+        }
+        
+        .map-container iframe {
+          height: 200px; /* Reducción de la altura del mapa */
+        }
+
+        .carousel-slide img {
+          height: 180px; /* Reducción de la altura del carrusel */
+        }
+
+        .prev,
+        .next {
+          padding: 6px;
+          font-size: 1.2em;
+        }
+
+        .prev {
+          left: 5px;
+        }
+
+        .next {
+          right: 5px;
+        }
+
+        .location-details p {
+          font-size: 0.9rem;
+        }
+      }
+</style>
+  </head>
+
+  <body>
+    <Header />
+
+    <section class="about-ion" id="sobrenosotros">
+      <div style="position: relative; display: inline-block">
+        <span class="sobren-title" id="productos-heading"> Sobre Nosotros</span>
+      </div>
+      <div class="about-banner">
+        <h2></h2>
+        <p>
+          Nuestra historia, nuestra pasión por la calidad y nuestro compromiso
+          con tu salud.
+        </p>
+      </div>
+
+      <div class="about-story">
+        <div class="story-image">
+          <img src="/Foto.jpg" alt="Fotografía" />
+        </div>
+        <div class="story-text">
+          <h3>Nuestra Historia</h3>
+          <p>
+            <strong>SANYA SERVICIOS GENERALES S.A.C</strong> nació de la creencia
+            fundamental de que la buena salud comienza con la buena alimentación.
+            Trabajamos con pasión para llevar a tu mesa los mejores comestibles y
+            productos naturales, seleccionando cada artículo con rigor y cariño.
+          </p>
+          <p>
+            Nuestra historia comenzó en <strong>2020</strong> con la visión de ofrecer
+            una alternativa local a las grandes cadenas, enfocada en la <strong
+              >calidad, frescura y el apoyo a productores locales</strong
+            >. Queremos ser más que una tienda; queremos ser parte de tu estilo
+            de vida saludable, garantizando que cada producto que llevas a casa
+            es de la más alta calidad y trazabilidad.
+          </p>
+        </div>
+      </div>
+
+      <div class="about-vision-mission">
+        <div class="vision-box">
+          <h3><i class="fas fa-leaf"></i> Visión</h3>
+          <p>
+            Convertirnos en el referente de alimentos saludables y naturales en
+            la región, impulsando hábitos de vida nutritivos y sosteniendo un
+            ecosistema de productores responsables.
+          </p>
+        </div>
+        <div class="mission-box">
+          <h3><i class="fas fa-handshake"></i> Misión</h3>
+          <p>
+            Brindar acceso a una amplia variedad de comestibles y productos
+            naturales de calidad superior a precios justos, garantizando
+            frescura y un servicio al cliente transparente y amigable.
+          </p>
+        </div>
+      </div>
+
+      <div class="about-values">
+        <h2>Nuestros Pilares de Confianza</h2>
+        <div class="values-grid">
+          <div class="value-item box">
+            <i class="fas fa-seedling"></i>
+            <h4>Frescura y Origen</h4>
+            <p>
+              Priorizamos productos de temporada y origen conocido, muchos
+              provenientes de pequeños productores locales.
+            </p>
+          </div>
+          <div class="value-item box">
+            <i class="fas fa-heartbeat"></i>
+            <h4>Bienestar y Nutrición</h4>
+            <p>
+              Cada producto está seleccionado para contribuir positivamente a la
+              salud y la dieta de tu familia.
+            </p>
+          </div>
+          <div class="value-item box">
+            <i class="fas fa-globe-americas"></i>
+            <h4>Compromiso Local</h4>
+            <p>
+              Apoyamos la economía regional y promovemos prácticas sostenibles
+              en toda nuestra cadena de suministro.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-cta">
+        <h3>¡Empieza tu viaje hacia un bienestar natural!</h3>
+        <div class="cta">
+          <a href="/productos" class="btn-premium">
+            Explorar Productos Naturales</a
+          >
+        </div>
+      </div>
+
+      <section
+        class="location-section"
+        aria-labelledby="ubicacion-heading"
+        id="ubicacion"
+      >
+        <div class="TT">
+          <span class="section-title1" id="productos-heading">
+            NOS ECUENTRAS EN</span
+          >
+        </div>
+        <div class="wrapper">
+          <div class="location-content-grid">
+            <div class="location-map-details">
+              <div class="map-content">
+                <div class="map-container">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7771.5258928056355!2d-74.10536990749002!3d-13.114198348857483!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91128394cdec8565%3A0xffa61eaa1008995c!2sAcos%20Vinchos!5e0!3m2!1ses-419!2spe!4v1758599379593!5m2!1ses-419!2spe"
+                    width="100%"
+                    height="300"
+                    style="border: 0"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+              </div>
+              <div class="location-details">
+                <p>
+                  <strong>Dirección:</strong> Calle Nazareno Nro. 136 (2do pasaje)
+                  Ayacucho - Huamanga - Ayacucho
+                </p>
+                <p><strong>Horario:</strong> Lun - Vie: 9am - 6pm</p>
+                <p><strong>Teléfono:</strong> +51 900 000 000</p>
+
+                <a
+                  href="https://maps.google.com/maps?q=Av.+Principal+123,+Lima"
+                  class="btn-premium">Cómo llegar</a
+                >
+              </div>
+            </div>
+
+            <div class="location-visual-reference">
+              <div class="carousel-container">
+                <div class="carousel-slide">
+                  <img
+                    src="/referencia1.jpg"
+                    alt="Referencia visual de la fachada del negocio, Foto 1"
+                  />
+                  <img
+                    src="/referencia2.jpg"
+                    alt="Referencia visual del interior de la tienda, Foto 2"
+                  />
+                  <img
+                    src="/referencia3.jpg"
+                    alt="Referencia visual del stock de productos, Foto 3"
+                  />
+                  <img
+                    src="/referencia4.jpg"
+                    alt="Referencia visual de los productos, Foto 4"
+                  />
+                </div>
+                <button class="prev" aria-label="Diapositiva anterior">❮</button
+                >
+                <button class="next" aria-label="Siguiente diapositiva"
+                  >❯</button
+                >
+                <div class="carousel-dots"></div>
+              </div>
+              <h3>Referencias visuales</h3>
+            </div>
+          </div>
+        </div>
+         
+      </section>
+      </section>
+      <Footer />
+   
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const slide = document.querySelector(".carousel-slide") as HTMLElement | null;
+        const images = document.querySelectorAll(".carousel-slide img");
+        const prev = document.querySelector(".prev") as HTMLButtonElement | null;
+        const next = document.querySelector(".next") as HTMLButtonElement | null;
+        const dotsContainer = document.querySelector(".carousel-dots") as HTMLElement | null;
+
+        if (!slide || !images.length || !prev || !next || !dotsContainer)
+          return;
+
+        let counter = 0;
+        let size = images[0].clientWidth;
+
+        // Crear puntos
+        images.forEach((img, i) => {
+          const dot = document.createElement("span");
+          dot.dataset.index = i.toString();
+          dot.addEventListener("click", () => {
+            counter = i;
+            updateCarousel();
+          });
+          dotsContainer.appendChild(dot);
+        });
+
+        const dots = document.querySelectorAll(".carousel-dots span");
+
+        function updateCarousel() {
+          if (slide) {
+            slide.style.transform = `translateX(${-size * counter}px)`;
+          }
+          dots.forEach((dot, i) => {
+            dot.classList.toggle("active", i === counter);
+          });
+        }
+
+        prev.addEventListener("click", () => {
+          counter = counter <= 0 ? images.length - 1 : counter - 1;
+          updateCarousel();
+        });
+
+        next.addEventListener("click", () => {
+          counter = counter >= images.length - 1 ? 0 : counter + 1;
+          updateCarousel();
+        });
+
+        window.addEventListener("resize", () => {
+          size = images[0].clientWidth;
+          updateCarousel();
+        });
+
+        updateCarousel();
+
+        // Auto-slide every 3 seconds
+        let autoSlide = setInterval(() => {
+          counter = counter >= images.length - 1 ? 0 : counter + 1;
+          updateCarousel();
+        }, 4000);
+
+        // Pause auto-slide on user interaction
+        function pauseAutoSlide() {
+          clearInterval(autoSlide);
+          setTimeout(() => {
+            autoSlide = setInterval(() => {
+              counter = counter >= images.length - 1 ? 0 : counter + 1;
+              updateCarousel();
+            }, 3000);
+          }, 5000); // Resume after 5 seconds of inactivity
+        }
+
+        prev.addEventListener("click", pauseAutoSlide);
+        next.addEventListener("click", pauseAutoSlide);
+        dots.forEach(dot => dot.addEventListener("click", pauseAutoSlide));
+      });
+    </script>
+  </body>
+</html>

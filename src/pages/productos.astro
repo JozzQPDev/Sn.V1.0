@@ -1,0 +1,608 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import logo1 from "../assets/whatsapp.png";
+import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <BaseHead
+      title={`${SITE_TITLE} - Productos`}
+      description={SITE_DESCRIPTION}
+    />
+    <style>
+      /* --- Variables y Base --- */
+      :root {
+        /* Colores asumidos de tu esquema visual (verde y dorado) */
+        --primary-green: #2e8b57;
+        --primary-gold: #ffc107;
+        --pure-white: #ffffff;
+        --text-dark: #333333;
+        --premium-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        --premium-border: 1px solid rgba(0, 0, 0, 0.05);
+        --transition-smooth: all 0.3s ease;
+        --transition-bounce: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      body {
+        font-family: "Arial", sans-serif;
+        line-height: 1.6;
+        color: var(--text-dark);
+        padding-top: 90px;
+        background-color: #f7f7f7; /* Fondo ligero para resaltar las tarjetas */
+      }
+
+      /* --- Sección Principal --- */
+      .productos-section {
+        padding: 60px 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .productos-title {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 40px;
+        color: #2c3e50;
+        position: relative;
+      }
+
+      .productos-title::after {
+        content: "";
+        display: block;
+        width: 100px;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          var(--primary-green),
+          var(--primary-gold)
+        );
+        margin: 10px auto;
+      }
+
+      .productos-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 40px;
+        margin-top: 50px;
+      }
+
+      /* --- Estilos de Tarjeta --- */
+      .producto-card {
+        background: var(--pure-white);
+        border-radius: 20px;
+        box-shadow: var(--premium-shadow);
+        overflow: hidden;
+        transition: var(--transition-smooth);
+        border: var(--premium-border);
+        position: relative;
+        animation: fadeInUp 0.8s ease-out forwards;
+        opacity: 0;
+        /* Ajuste de altura para uniformidad en el grid */
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* Retrasos de animación omitidos por brevedad */
+
+      .producto-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(46, 139, 87, 0.2);
+      }
+
+      .producto-image {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+
+      .producto-content {
+        padding: 25px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex-grow: 1;
+      }
+
+      .producto-title {
+        font-size: 1.6rem;
+        margin-bottom: 12px;
+        color: var(--text-dark);
+        font-weight: 700;
+      }
+
+      .producto-description {
+        color: var(--text-dark);
+        margin-bottom: 0.1px;
+        line-height: 1.5;
+        font-size: 0.95rem;
+        flex-grow: 1; /* Empuja el footer hacia abajo */
+      }
+
+      .producto-price {
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: var(--primary-green);
+        display: inline-block;
+        background: linear-gradient(
+          135deg,
+          var(--primary-green),
+          var(--primary-gold)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        position: relative;
+      }
+
+      /* --- Footer de la Tarjeta (Precio y Botones) --- */
+      .producto-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 1px;
+      }
+
+      .producto-actions {
+        display: flex;
+        gap: 120px; /* Espacio entre los botones */
+        flex-wrap: wrap;
+      }
+
+      /* --- Estilos de Botones --- */
+      /* Botón Principal (Pedir/WhatsApp) */
+      .btn-premium {
+        display: flex; /* Para alinear el icono de WhatsApp */
+        align-items: center;
+        padding: 6px 14px; /* Un poco más grande para el icono */
+        background: linear-gradient(
+          135deg,
+          var(--primary-green),
+          var(--primary-gold)
+        );
+        color: var(--pure-white);
+        font-size: 0.85rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: var(--transition-bounce);
+        box-shadow: 0 4px 10px rgba(46, 139, 87, 0.4); /* Sombra más fuerte */
+        border: none;
+        cursor: pointer;
+      }
+
+      /* Botón Secundario (Ver Detalles) */
+      .btn-secondary {
+        display: flex;
+        align-items: center;
+        padding: 6px 14px;
+        background: transparent; /* Fondo transparente */
+        color: var(--primary-green); /* Color del texto primario */
+        font-size: 0.85rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: var(--transition-smooth);
+        border: 1px solid var(--primary-green); /* Borde sutil */
+        cursor: pointer;
+        box-shadow: none;
+      }
+
+      .btn-secondary:hover {
+        background: rgba(46, 139, 87, 0.1); /* Ligero hover */
+        transform: translateY(-2px);
+      }
+
+      /* Estilos para el icono de WhatsApp */
+      .whatsapp-icon {
+        width: 25px;
+        height: 25px;
+        margin-right: 6px;
+        vertical-align: middle;
+      }
+
+      /* Estilos para la sección CTA */
+      .cta-section {
+        text-align: center;
+        padding: 60px 20px;
+        background: linear-gradient(
+          135deg,
+          rgba(46, 139, 87, 0.1) 0%,
+          rgba(255, 140, 0, 0.1) 100%
+        );
+        margin-top: 80px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cta-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")
+          repeat;
+        animation: patternMove 30s linear infinite;
+      }
+
+      .cta-section h2 {
+        font-size: 2.2rem;
+        margin-bottom: 20px;
+        color: var(--text-dark);
+        position: relative;
+        z-index: 1;
+      }
+
+      .cta-section p {
+        font-size: 1.1rem;
+        margin-bottom: 30px;
+        color: var(--text-dark);
+        position: relative;
+        z-index: 1;
+      }
+
+      .cta-section .btn-premium {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        padding: 12px 30px;
+        font-size: 1.1rem;
+        margin-top: 20px;
+        width: auto;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* --- Animaciones y Media Queries (sin cambios) --- */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Enhanced Responsive Design */
+      @media (max-width: 480px) {
+        .productos-section {
+          padding: 40px 10px;
+        }
+
+        .productos-title {
+          font-size: 2rem;
+          margin-bottom: 30px;
+        }
+
+        .productos-grid {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+
+        .producto-card {
+          min-height: auto;
+          max-width: 100%;
+        }
+
+        .producto-image {
+          height: 180px;
+        }
+
+        .producto-content {
+          padding: 20px;
+        }
+
+        .producto-title {
+          font-size: 1.4rem;
+          margin-bottom: 10px;
+        }
+
+        .producto-description {
+          font-size: 0.9rem;
+          margin-bottom: 0.05px;
+        }
+
+        .producto-price {
+          font-size: 1.2rem;
+        }
+
+        .producto-footer {
+          flex-direction: column;
+          align-items: flex-start;
+          margin-top: 0px;
+        }
+
+        .producto-actions {
+          width: 100%;
+          gap: 150px;
+          justify-content: space-between;
+        }
+
+        .btn-premium,
+        .btn-secondary {
+          flex-grow: 1;
+          justify-content: center;
+          padding: 10px 12px;
+          font-size: 0.8rem;
+        }
+
+        .whatsapp-icon {
+          width: 20px;
+          height: 20px;
+          margin-right: 4px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .productos-section {
+          padding: 50px 15px;
+        }
+
+        .productos-title {
+          font-size: 2.3rem;
+          margin-bottom: 35px;
+        }
+
+        .productos-grid {
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 35px;
+        }
+
+        .producto-card {
+          min-height: auto;
+        }
+
+        .producto-image {
+          height: 200px;
+        }
+
+        .producto-content {
+          padding: 22px;
+        }
+
+        .producto-title {
+          font-size: 1.5rem;
+          margin-bottom: 11px;
+        }
+
+        .producto-description {
+          font-size: 0.92rem;
+          margin-bottom: 0.08px;
+        }
+
+        .producto-price {
+          font-size: 1.25rem;
+        }
+
+        .producto-footer {
+          flex-direction: column;
+          align-items: flex-start;
+          margin-top: 0.5px;
+        }
+
+        .producto-price {
+          margin-bottom: 8px;
+        }
+
+        .producto-actions {
+          width: 100%;
+          justify-content: space-between;
+        }
+
+        .btn-premium,
+        .btn-secondary {
+          flex-grow: 1;
+          justify-content: center;
+        }
+      }
+
+      @media (max-width: 1024px) {
+        .productos-grid {
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 35px;
+        }
+
+        .producto-card {
+          max-width: 100%;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <Header />
+    <section class="productos-section" id="productos">
+      <h1 class="productos-title">Nuestros Productos Naturales</h1>
+      <div class="productos-grid">
+        <div class="producto-card">
+          <img
+            src="/chocolate.jpg"
+            alt="Frutas Orgánicas"
+            class="producto-image"
+          />
+          <div class="producto-content">
+            <h3 class="producto-title">Frutas Orgánicas</h3>
+            <p class="producto-description">
+              Selección de frutas frescas cultivadas sin pesticidas, ricas en
+              vitaminas y nutrientes naturales.
+            </p>
+            <p class="producto-price">Desde S/ 5.00</p>
+            <div class="producto-footer">
+              <div class="producto-actions">
+                <a href="/detalle-prod/first-post" class="btn-secondary"
+                  >Ver Detalles</a
+                >
+                <a href="https://wa.me/51997307782?text=Hola,%20quiero%20más%20información%20sobre%20sus%20productos"  class="btn-premium">
+                  <img src={logo1.src} alt="WhatsApp" class="whatsapp-icon" />
+                 Pedir
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="producto-card">
+          <img
+            src="/artesania.jpg"
+            alt="Verduras Frescas"
+            class="producto-image"
+          />
+          <div class="producto-content">
+            <h3 class="producto-title">Verduras Frescas</h3>
+            <p class="producto-description">
+              Verduras de temporada cosechadas en el momento óptimo para
+              garantizar máxima frescura y sabor.
+            </p>
+            <p class="producto-price">Desde S/ 3.00</p>
+
+            <div class="producto-footer">
+              <div class="producto-actions">
+                <a href="/detalle-prod/second-post" class="btn-secondary"
+                  >Ver Detalles</a
+                >
+                <a href="https://wa.me/51997307782?text=Hola,%20quiero%20más%20información%20sobre%20sus%20productos"class="btn-premium">
+                 <img src={logo1.src} alt="WhatsApp" class="whatsapp-icon" />
+                 Pedir
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="producto-card">
+          <img
+            src="/mermelada.jpg"
+            alt="Productos Naturales"
+            class="producto-image"
+          />
+          <div class="producto-content">
+            <h3 class="producto-title">Productos Naturales</h3>
+            <p class="producto-description">
+              Aceites esenciales, hierbas aromáticas y suplementos naturales
+              para tu bienestar diario.
+            </p>
+            <p class="producto-price">Desde S/ 8.00</p>
+            <div class="producto-footer">
+              <div class="producto-actions">
+                <a href="/detalle-prod/third-post" class="btn-secondary"
+                  >Ver Detalles</a
+                >
+                <a href="https://wa.me/51997307782?text=Hola,%20quiero%20más%20información%20sobre%20sus%20productos" class="btn-premium">
+                  <img src={logo1.src} alt="WhatsApp" class="whatsapp-icon" />
+                 Pedir
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="producto-card">
+          <img
+            src="/retablo.jpg"
+            alt="Cereales Integrales"
+            class="producto-image"
+          />
+          <div class="producto-content">
+            <h3 class="producto-title">Cereales Integrales</h3>
+            <p class="producto-description">
+              Quinoa, amaranto y otros granos ancestrales ricos en proteínas y
+              fibra natural.
+            </p>
+            <p class="producto-price">Desde S/ 6.00</p>
+            <div class="producto-footer">
+              <div class="producto-actions">
+                <a href="/detalle-prod/fourth-post" class="btn-secondary"
+                  >Ver Detalles</a
+                >
+                <a href="https://wa.me/51997307782?text=Hola,%20quiero%20más%20información%20sobre%20sus%20productos" class="btn-premium">
+                  <img src={logo1.src} alt="WhatsApp" class="whatsapp-icon" />
+                 Pedir
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="producto-card">
+          <img
+            src="/chocolate.jpg"
+            alt="Tés y Infusiones"
+            class="producto-image"
+          />
+          <div class="producto-content">
+            <h3 class="producto-title">Tés e Infusiones</h3>
+            <p class="producto-description">
+              Mezclas de hierbas orgánicas para infusiones relajantes y
+              beneficiosas para la salud.
+            </p>
+            <p class="producto-price">Desde S/ 4.00</p>
+            <div class="producto-footer">
+              <div class="producto-actions">
+                <a href="/detalle-prod/fifth-post" class="btn-secondary"
+                  >Ver Detalles</a
+                >
+                <a href="https://wa.me/51997307782?text=Hola,%20quiero%20más%20información%20sobre%20sus%20productos" class="btn-premium">
+                  <img src={logo1.src} alt="WhatsApp" class="whatsapp-icon" />
+                 Pedir
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="producto-card">
+          <img
+            src="/artesania.jpg"
+            alt="Productos Ecológicos"
+            class="producto-image"
+          />
+          <div class="producto-content">
+            <h3 class="producto-title">Productos Ecológicos</h3>
+            <p class="producto-description">
+              Artículos biodegradables y sostenibles para un estilo de vida
+              respetuoso con el medio ambiente.
+            </p>
+            <p class="producto-price">Desde S/ 4.00</p>
+            <div class="producto-footer">
+              <div class="producto-actions">
+                <a href="/detalle-prod/sixth-post" class="btn-secondary"
+                  >Ver Detalles</a
+                >
+                <a href="https://wa.me/51997307782?text=Hola,%20quiero%20más%20información%20sobre%20sus%20productos" class="btn-premium">
+                   <img src={logo1.src} alt="WhatsApp" class="whatsapp-icon" />
+                 Pedir
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <h2>¡Descubre el Sabor de lo Natural!</h2>
+      <p>
+        Visítanos y encuentra todo lo que necesitas para una alimentación
+        saludable.
+      </p>
+      <a href="/" class="btn-premium">Volver al Inicio</a>
+    </section>
+  </body><Footer />
+</html>
