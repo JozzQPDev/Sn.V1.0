@@ -2,7 +2,8 @@
 // Script de Componente (Frontmatter)
 const today = new Date();
 // Astro maneja las importaciones de imágenes (Vite Asset Handling)
-import logo1 from "../assets/logo.png"; 
+import logo from "../assets/logo.png"
+
 import BaseHead from "../components/BaseHead.astro";
 
 // Definición de colores de acento (Monocromático Claro)
@@ -27,7 +28,7 @@ const COLUMN_BG_COLOR = '#ffffff'; // Fondo de Columna Blanco Puro
 <footer class="footer-custom">
   <div class="footer-container">
     <div class="footer-column logo-info">
-      <img src={logo1.src} alt="Sanya Logo" class="footer-logo" />
+      <img src={logo.src} alt="Sanya Logo" class="footer-logo" />
       <div class="company-info">
         <h3>SANYA SERVICIOS GENERALES S.A.C</h3>
         <p>
