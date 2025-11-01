@@ -12,7 +12,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
       title={`${SITE_TITLE} - Sobre Nosotros`}
       description={SITE_DESCRIPTION}
     />
-  <style>
+    <style>
       /* Variables de CSS y estilos base (asumo que están definidas fuera) */
       body {
         font-family: "Atkinson", sans-serif;
@@ -89,13 +89,12 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
       .story-image {
         /* Permite que el área de la imagen se comprima ligeramente */
         flex-shrink: 0;
-        width: 40%; 
+        width: 40%;
       }
       .story-text {
         /* Permite que el texto ocupe el espacio restante */
         flex-grow: 1;
       }
-
 
       .story-image img {
         width: 100%;
@@ -426,7 +425,6 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
         color: var(--text-dark);
       }
 
-
       .prev,
       .next {
         position: absolute;
@@ -481,7 +479,6 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
         background: var(--primary-gold);
       }
 
-
       /* Animaciones */
       @keyframes fadeInUp {
         from {
@@ -531,10 +528,9 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
       /*******************************
       */
       @media (max-width: 1024px) {
-
         /* Ajuste para que la imagen de la historia se apile primero en tablets grandes */
         .about-story {
-          flex-direction: column; 
+          flex-direction: column;
           gap: 30px;
           text-align: center;
         }
@@ -552,7 +548,6 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
           grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         }
       }
-
 
       /*
       /*******************************
@@ -596,7 +591,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
           gap: 30px;
           margin-bottom: 50px;
         }
-        
+
         /* Ubicación: Se apila verticalmente */
         .location-content-grid {
           display: flex; /* Cambiamos de grid a flex para una mejor pila */
@@ -621,7 +616,6 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
         }
       }
 
-
       /*
       /*******************************
       /* Responsive Mejorado: Móvil (Max 480px)
@@ -637,7 +631,8 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
           padding: 40px 15px;
         }
 
-        .sobren-title, .section-title1 {
+        .sobren-title,
+        .section-title1 {
           font-size: 2rem;
           margin-bottom: 30px;
         }
@@ -664,7 +659,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
           gap: 20px;
           margin-bottom: 30px;
         }
-        
+
         .story-text h3 {
           font-size: 1.5rem;
           margin-bottom: 15px;
@@ -673,7 +668,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
         .story-text p {
           font-size: 0.95rem;
         }
-        
+
         .about-vision-mission {
           /* Ya se apila en 768px, solo ajustamos el espaciado */
           gap: 20px;
@@ -727,7 +722,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
           padding: 30px 15px;
           margin-bottom: 30px;
         }
-        
+
         .map-container iframe {
           height: 200px; /* Reducción de la altura del mapa */
         }
@@ -754,7 +749,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
           font-size: 0.9rem;
         }
       }
-</style>
+    </style>
   </head>
 
   <body>
@@ -779,47 +774,58 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
         <div class="story-text">
           <h3>Nuestra Historia</h3>
           <p>
-            <strong>SANYA SERVICIOS GENERALES S.A.C</strong> nació de la creencia
-            fundamental de que la buena salud comienza con la buena alimentación.
-            Trabajamos con pasión para llevar a tu mesa los mejores comestibles y
-            productos naturales, seleccionando cada artículo con rigor y cariño.
+            <strong>SANYA SERVICIOS GENERALES S.A.C.</strong> nació en la localidad
+            de Sanya, distrito de Acos Vinchos, impulsado por la visión emprendedora
+            del
+            <strong>Tec. Agrop. Aldo Pérez Pozo</strong>. Desde sus inicios, la
+            empresa fue creada con el único objetivo de ofrecer al mercado
+            productos naturales de alta calidad, elaborados con productos y
+            frutas frescas de la localidad de Acos Vinchos.
           </p>
           <p>
-            Nuestra historia comenzó en <strong>2020</strong> con la visión de ofrecer
-            una alternativa local a las grandes cadenas, enfocada en la <strong
-              >calidad, frescura y el apoyo a productores locales</strong
-            >. Queremos ser más que una tienda; queremos ser parte de tu estilo
-            de vida saludable, garantizando que cada producto que llevas a casa
-            es de la más alta calidad y trazabilidad.
+            Motivado por su experiencia en el sector productivo y su origen en
+            la localidad de Sanya, el <strong
+              >Tec. Agrop. Aldo Pérez Pozo</strong
+            > decidió apostar por la elaboración y comercialización de productos
+            procesados locales, priorizando la frescura de la fruta y fomentando
+            la siembra y valoración del producto regional, preservando la biodiversidad
+            del distrito de Acos Vinchos.
+          </p>
+          <p>
+            Hoy en día, <strong>SANYA SERVICIOS GENERALES S.A.C.</strong> participa
+            en diferentes ferias con el objetivo de dar a conocer su marca y permitir
+            que más personas disfruten de estos maravillosos productos.
           </p>
         </div>
       </div>
 
       <div class="about-vision-mission">
         <div class="vision-box">
-          <h3><i class="fas fa-leaf"></i> Visión</h3>
+          <h3><i class="fas fa-handshake"></i> Misión</h3>
           <p>
-            Convertirnos en el referente de alimentos saludables y naturales en
-            la región, impulsando hábitos de vida nutritivos y sosteniendo un
-            ecosistema de productores responsables.
+            Somos una empresa dedicada a la elaboración y comercialización de
+            productos naturales, con un compromiso social, económico y
+            ambiental; impulsando el desarrollo sostenible de pequeños
+            productores locales .
           </p>
         </div>
         <div class="mission-box">
-          <h3><i class="fas fa-handshake"></i> Misión</h3>
+          <h3><i class="fas fa-leaf"></i> Visión</h3>
           <p>
-            Brindar acceso a una amplia variedad de comestibles y productos
-            naturales de calidad superior a precios justos, garantizando
-            frescura y un servicio al cliente transparente y amigable.
+            Ser reconocidos como una empresa líder en el mercado local, regional
+            y nacional ofreciendo productos saludables a base de frutas
+            naturales garantizando la calidad con estricto respeto por la
+            naturaleza
           </p>
         </div>
       </div>
 
       <div class="about-values">
-        <h2>Nuestros Pilares de Confianza</h2>
+        <h2>Nuestros Valores Principales</h2>
         <div class="values-grid">
           <div class="value-item box">
             <i class="fas fa-seedling"></i>
-            <h4>Frescura y Origen</h4>
+            <h4>Calidad</h4>
             <p>
               Priorizamos productos de temporada y origen conocido, muchos
               provenientes de pequeños productores locales.
@@ -827,7 +833,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
           </div>
           <div class="value-item box">
             <i class="fas fa-heartbeat"></i>
-            <h4>Bienestar y Nutrición</h4>
+            <h4>Originalidad</h4>
             <p>
               Cada producto está seleccionado para contribuir positivamente a la
               salud y la dieta de tu familia.
@@ -869,25 +875,27 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
               <div class="map-content">
                 <div class="map-container">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7771.5258928056355!2d-74.10536990749002!3d-13.114198348857483!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91128394cdec8565%3A0xffa61eaa1008995c!2sAcos%20Vinchos!5e0!3m2!1ses-419!2spe!4v1758599379593!5m2!1ses-419!2spe"
-                    width="100%"
-                    height="300"
-                    style="border: 0"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3885.0374857968804!2d-74.22434891880522!3d-13.160035530532621!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91127df5a019fea9%3A0x68a3f60a033824ae!2sJr.%20Puno%20267%2C%20Ayacucho%2005000!5e0!3m2!1ses-419!2spe!4v1761964262940!5m2!1ses-419!2spe"
+                    width="600"
+                    height="450"
+                    style="border:0;"
                     allowfullscreen=""
                     loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    referrerpolicy="no-referrer-when-downgrade"
+                  >
+                  </iframe>
                 </div>
               </div>
               <div class="location-details">
                 <p>
-                  <strong>Dirección:</strong> Calle Nazareno Nro. 136 (2do pasaje)
-                  Ayacucho - Huamanga - Ayacucho
+                  <strong>Dirección:</strong> Jr. puno Nro. 267 Cercado Ayacucho
+                  - Huamanga – Ayacucho
                 </p>
-                <p><strong>Horario:</strong> Lun - Vie: 9am - 6pm</p>
-                <p><strong>Teléfono:</strong> +51 900 000 000</p>
+                <p><strong>Horario:</strong> Cerrado</p>
+                <p><strong>Teléfono:</strong> +51 913 547 132</p>
 
                 <a
-                  href="https://maps.google.com/maps?q=Av.+Principal+123,+Lima"
+                  href="https://maps.app.goo.gl/Bc8X5B9o6QUMjwWN7"
                   class="btn-premium">Cómo llegar</a
                 >
               </div>
@@ -924,18 +932,25 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
             </div>
           </div>
         </div>
-         
       </section>
-      </section>
-      <Footer />
-   
+    </section>
+    <Footer />
+
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        const slide = document.querySelector(".carousel-slide") as HTMLElement | null;
+        const slide = document.querySelector(
+          ".carousel-slide"
+        ) as HTMLElement | null;
         const images = document.querySelectorAll(".carousel-slide img");
-        const prev = document.querySelector(".prev") as HTMLButtonElement | null;
-        const next = document.querySelector(".next") as HTMLButtonElement | null;
-        const dotsContainer = document.querySelector(".carousel-dots") as HTMLElement | null;
+        const prev = document.querySelector(
+          ".prev"
+        ) as HTMLButtonElement | null;
+        const next = document.querySelector(
+          ".next"
+        ) as HTMLButtonElement | null;
+        const dotsContainer = document.querySelector(
+          ".carousel-dots"
+        ) as HTMLElement | null;
 
         if (!slide || !images.length || !prev || !next || !dotsContainer)
           return;
@@ -1001,7 +1016,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 
         prev.addEventListener("click", pauseAutoSlide);
         next.addEventListener("click", pauseAutoSlide);
-        dots.forEach(dot => dot.addEventListener("click", pauseAutoSlide));
+        dots.forEach((dot) => dot.addEventListener("click", pauseAutoSlide));
       });
     </script>
   </body>
