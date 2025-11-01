@@ -2,6 +2,7 @@
 import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
+import logo1 from "../assets/whatsapp.png";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 ---
 
@@ -15,7 +16,8 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
         padding: 0;
         box-sizing: border-box;
       }
-      mo body {
+
+      body {
         padding-top: 110px; /* Space for fixed header */
       }
 
@@ -127,10 +129,67 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
         }
       }
 
+      /* ==================== Scroll Indicator ==================== */
+      .scroll-indicator {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 30px; /* distancia desde el borde inferior */
+        width: 25px;
+        height: 45px;
+        border: 2px solid #fff;
+        border-radius: 25px;
+        opacity: 0.9;
+        z-index: 3;
+        animation: fadeIn 1.5s ease-out forwards;
+      }
+
+      .scroll-indicator::after {
+        content: "";
+        position: absolute;
+        top: 8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 3px;
+        height: 12px;
+        background-color: #fff;
+        border-radius: 2px;
+        animation: scroll 1.5s infinite;
+      }
+
+      /* Animación del movimiento del scroll */
+      @keyframes scroll {
+        0% {
+          opacity: 0;
+          transform: translate(-50%, 0);
+        }
+        50% {
+          opacity: 1;
+          transform: translate(-50%, 10px);
+        }
+        100% {
+          opacity: 0;
+          transform: translate(-50%, 20px);
+        }
+      }
+
+      /* Animación de aparición */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translate(-50%, 20px);
+        }
+        to {
+          opacity: 1;
+          transform: translate(-50%, 0);
+        }
+      }
+
       /* ==================== FIN CAMBIOS ==================== */
 
       .btn-premium {
         display: inline-block;
+        margin-bottom: 10px;
         padding: 16px 32px;
         background: linear-gradient(
           135deg,
@@ -281,6 +340,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
         padding: 60px 20px;
         max-width: 1200px;
         margin: 0 auto;
+        animation: fadeInUp 0.8s ease-out;
       }
 
       .summary-section {
@@ -296,6 +356,14 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
         max-width: 600px;
         width: 100%;
         text-align: center;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      .summary-container:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(46, 139, 87, 0.2);
       }
 
       .summary-section h2 {
@@ -303,19 +371,27 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
         color: var(--text-dark);
         margin-bottom: 20px;
         position: relative;
+        display: inline-block;
       }
 
       .summary-section h2::after {
         content: "";
         display: block;
-        width: 80px;
+        width: 25vh;
         height: 3px;
         background: linear-gradient(
           90deg,
           var(--primary-green),
           var(--primary-gold)
         );
-        margin: 10px auto;
+        margin: 10px auto 0;
+        transform: scaleX(0.9);
+        transform-origin: center;
+        transition: transform 0.3s ease;
+      }
+
+      .summary-section h2:hover::after {
+        transform: scaleX(1);
       }
 
       .summary-section p {
@@ -326,7 +402,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
         opacity: 0.9;
       }
 
-      .btn-secondary {
+      .btn-secondary2 {
         display: inline-block;
         padding: 14px 28px;
         background: linear-gradient(
@@ -347,7 +423,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
         overflow: hidden;
       }
 
-      .btn-secondary::before {
+      .btn-secondary2::before {
         content: "";
         position: absolute;
         top: 0;
@@ -363,11 +439,11 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
         transition: left 0.6s;
       }
 
-      .btn-secondary:hover::before {
+      .btn-secondary2:hover::before {
         left: 100%;
       }
 
-      .btn-secondary:hover {
+      .btn-secondary2:hover {
         transform: translateY(-3px) scale(1.05);
         box-shadow: 0 20px 40px rgba(46, 139, 87, 0.3);
       }
@@ -405,47 +481,211 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 30px;
         margin-bottom: 40px;
+        text-align: left;
+        animation: fadeInUp 0.8s ease-out;
       }
 
+      /* --- Estilos de Tarjeta --- */
       .producto-card {
         background: var(--pure-white);
-        border-radius: 15px;
-        overflow: hidden;
+        border-radius: 20px;
         box-shadow: var(--premium-shadow);
+        overflow: hidden;
+        transition: var(--transition-smooth);
         border: var(--premium-border);
-        min-height: 200px;
+        position: relative;
+
+        /* Ajuste de altura para uniformidad en el grid */
+        display: flex;
+        flex-direction: column;
         transition:
           transform 0.3s ease,
           box-shadow 0.3s ease;
       }
 
+      /* Retrasos de animación omitidos por brevedad */
+
       .producto-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 30px rgba(46, 139, 87, 0.2);
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(46, 139, 87, 0.2);
       }
 
       .producto-image {
         width: 100%;
-        height: 200px;
+        height: 220px;
         object-fit: cover;
+        transition: transform 0.3s ease;
       }
 
-      .product-info {
-        padding: 20px;
+      .producto-content {
+        padding: 25px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex-grow: 1;
       }
 
-      .product-title {
-        font-size: 1.2rem;
+      .producto-title {
+        font-size: 1.6rem;
+        margin-bottom: 12px;
         color: var(--text-dark);
-        margin-bottom: 10px;
-        font-weight: 600;
+        font-weight: 700;
       }
 
-      .product-description {
-        font-size: 0.9rem;
+      .producto-description {
         color: var(--text-dark);
+        margin-bottom: 0.1px;
         line-height: 1.5;
-        opacity: 0.8;
+        font-size: 0.95rem;
+        flex-grow: 1; /* Empuja el footer hacia abajo */
+      }
+
+      .producto-price {
+        margin-top: 10px;
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--primary-green);
+        display: inline-block;
+        background: linear-gradient(
+          135deg,
+          var(--primary-green),
+          var(--primary-gold)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        position: static;
+      }
+
+      /* --- Footer de la Tarjeta (Precio y Botones) --- */
+      .producto-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+      }
+
+      .producto-actions {
+        display: flex;
+        gap: 90px; /* Espacio entre los botones */
+        flex-wrap: wrap;
+      }
+
+      /* --- Estilos de Botones --- */
+      /* Botón Principal (Pedir/WhatsApp) */
+      .btn-premium-prod {
+        position: relative; /* Necesario para el pseudo-elemento ::before */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        padding: 8px 18px;
+        background: linear-gradient(
+          135deg,
+          var(--primary-green),
+          var(--primary-gold)
+        );
+        color: var(--pure-white);
+        font-size: 0.9rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(46, 139, 87, 0.4);
+        overflow: hidden; /* Para que el brillo no se salga del borde redondeado */
+        transition: all 0.3s ease;
+      }
+
+      .btn-premium-prod::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.4),
+          transparent
+        );
+        transition: left 0.5s ease;
+      }
+
+      .btn-premium-prod:hover::before {
+        left: 100%;
+      }
+
+      .btn-premium-prod:hover {
+        transform: translateY(-3px) scale(1.03);
+        box-shadow: 0 12px 25px rgba(46, 139, 87, 0.35);
+      }
+
+      /* Botón Secundario (Ver Detalles) */
+      .btn-secondary-prod {
+        display: flex;
+        align-items: center;
+        padding: 6px 14px;
+        background: transparent; /* Fondo transparente */
+        color: var(--primary-green); /* Color del texto primario */
+        font-size: 0.85rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: var(--transition-smooth);
+        border: 1px solid var(--primary-green); /* Borde sutil */
+        cursor: pointer;
+        box-shadow: none;
+      }
+
+      .btn-secondary-prod:hover {
+        background: rgba(46, 139, 87, 0.1); /* Ligero hover */
+        transform: translateY(-2px);
+      }
+
+      /* Estilos para el icono de WhatsApp */
+      .whatsapp-icon {
+        width: 25px;
+        height: 25px;
+        margin-right: 6px;
+        vertical-align: middle;
+      }
+
+      /* Tablets */
+      @media (max-width: 768px) {
+        .producto-actions {
+          flex-direction: row;
+          justify-content: space-evenly;
+        }
+
+        .btn-secondary-prod,
+        .btn-premium-prod {
+          font-size: 0.85rem;
+          padding: 6px 10px;
+          min-width: 120px;
+        }
+      }
+
+      /* Celulares */
+      @media (max-width: 480px) {
+        .producto-actions {
+          flex-direction: column; /* Uno debajo del otro */
+          gap: 8px;
+        }
+
+        .btn-secondary-prod,
+        .btn-premium-prod {
+          width: 100%;
+          font-size: 0.9rem;
+          padding: 10px;
+        }
+
+        .whatsapp-icon {
+          width: 18px;
+          height: 18px;
+          margin-right: 5px;
+        }
       }
 
       /* Testimonials Section */
@@ -457,6 +697,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
         );
         padding: 60px 20px;
         text-align: center;
+        animation: fadeInUp 0.8s ease-out;
       }
 
       .testimonials h2 {
@@ -649,7 +890,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
         }
 
         .banner {
-          height: 80vh;
+          height: auto;
           padding: 20px;
           margin-top: 70px;
         }
@@ -671,26 +912,59 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
           margin-bottom: 25px;
         }
 
+        .scroll-indicator {
+          position: absolute;
+          bottom: 22px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 22px;
+          height: 38px;
+          border: 2px solid #fff;
+          border-radius: 25px;
+          opacity: 0.8;
+          display: flex;
+          justify-content: center;
+          align-items: flex-start;
+          box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+          z-index: 10;
+        }
+
+        .scroll-indicator::after {
+          content: "";
+          position: absolute;
+          top: 6px;
+          width: 3px;
+          height: 8px;
+          background: #fff;
+          border-radius: 10px;
+          animation: scrollDownMobile 1.4s infinite;
+        }
+
+        /* Animación más suave para pantallas pequeñas */
+        @keyframes scrollDownMobile {
+          0% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+          50% {
+            opacity: 0.4;
+            transform: translateY(9px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
         .btn-premium {
           padding: 12px 24px;
           font-size: 0.9rem;
         }
 
-        .scroll-indicator {
-          width: 22px; /* más pequeño para móvil */
-          height: 38px;
-          bottom: 20px; /* más cerca del borde inferior */
-        }
-
-        .scroll-indicator::after {
-          width: 3px;
-          height: 10px;
-          top: 6px;
-        }
-
         .leaf-icon {
           display: none;
         }
+
         .summary-grid {
           grid-template-columns: 1fr;
           padding: 30px 15px;
@@ -717,7 +991,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
         .featured-products,
         .testimonials,
         .blog-highlights {
-          padding: 30px 15px;
+          padding: 3px 100px;
         }
 
         .featured-products h2,
@@ -748,6 +1022,80 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 
         .testimonial-card {
           padding: 15px;
+        }
+
+        .products-grid {
+          grid-template-columns: 1fr;
+          padding: 3px 1px;
+          gap: 20px;
+        }
+
+        /* Ajustes responsive para las tarjetas de producto */
+        .producto-card {
+          max-width: 100%; /* Ocupa todo el ancho disponible */
+          margin: 0 auto;
+          border-radius: 20px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Imagen del producto más pequeña y centrada */
+        .producto-image {
+          height: 200px;
+          object-fit: cover;
+        }
+
+        /* Contenido más compacto */
+        .producto-content {
+          padding: 15px;
+        }
+
+        .producto-title {
+          font-size: 1.5rem;
+          margin-bottom: 8px;
+        }
+
+        .producto-description {
+          font-size: 0.9rem;
+          line-height: 1.4;
+          margin-bottom: 12px;
+        }
+
+        .producto-price {
+          font-size: 1.2rem;
+          margin-bottom: 10px;
+        }
+
+        /* Pie de la tarjeta: botones uno al lado del otro */
+        .producto-footer {
+          display: flex;
+          justify-content: center; /* Centra el grupo de botones */
+          margin-top: auto;
+          margin-bottom: 10px;
+        }
+
+        .producto-actions {
+          display: flex;
+          flex-direction: row; /* Los coloca en línea */
+          justify-content: center;
+          align-items: center;
+          gap: 50px; /* Espacio entre botones */
+        }
+
+        /* Ajusta tamaño de los botones */
+        .btn-secondary-prod,
+        .btn-premium-prod {
+          flex: 1; /* Ambos botones ocupan el mismo ancho */
+          text-align: center;
+          justify-content: center;
+          font-size: 0.85rem;
+          padding: 10px 5px;
+          min-width: 102px; /* Tamaño mínimo para que no se hagan muy pequeños */
+        }
+
+        .whatsapp-icon {
+          width: 18px;
+          height: 18px;
+          margin-right: 6px;
         }
       }
 
@@ -874,81 +1222,109 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
     </section>
 
     <main>
-      <!-- Featured Products Section -->
+      <!-- Productos Destacados -->
       <section class="featured-products">
         <h2>Productos Destacados</h2>
         <div class="products-grid">
+          <!-- Producto 1 -->
           <div class="producto-card">
             <img
-              src="/chocolate.jpg"
-              alt="Frutas Orgánicas"
+              src="/Nectar-Nis.png"
+              alt="Néctar de Níspero"
               class="producto-image"
             />
             <div class="producto-content">
-              <h3 class="producto-title">Nectar de Nispero</h3>
+              <h3 class="producto-title">Néctar de Níspero</h3>
               <p class="producto-description">
-                Selección de frutas frescas cultivadas sin pesticidas, ricas en
-                vitaminas y nutrientes naturales.
+                Refrescante bebida natural elaborada con pulpa de níspero
+                fresco, rica en vitaminas y perfecta para disfrutar en cualquier
+                momento.
               </p>
               <p class="producto-price">Desde S/ 5.00</p>
-              <a
-                href="/detalle-prod/first-post"
-                class="btn-premium"
-                style="margin-top: 15px; padding: 8px 16px; font-size: 0.9rem;"
-                >Ver Detalles</a
-              >
+              <div class="producto-footer">
+                <div class="producto-actions">
+                  <a href="/detalle-prod/first-post" class="btn-secondary-prod"
+                    >Ver Detalles</a
+                  >
+                  <a
+                    href="https://wa.me/51997307782?text=Hola,%20quiero%20más%20información%20sobre%20sus%20productos"
+                    class="btn-premium-prod"
+                  >
+                    <img src={logo1.src} alt="WhatsApp" class="whatsapp-icon" />
+                    Pedir
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
+
+          <!-- Producto 2 -->
           <div class="producto-card">
             <img
-              src="/artesania.jpg"
-              alt="Verduras Frescas"
+              src="/Macerado-Nis.png"
+              alt="Macerado de Níspero"
               class="producto-image"
             />
             <div class="producto-content">
-              <h3 class="producto-title">Maserado de Nispero</h3>
+              <h3 class="producto-title">Macerado de Níspero</h3>
               <p class="producto-description">
-                Verduras de temporada cosechadas en el momento óptimo para
-                garantizar máxima frescura y sabor.
+                Bebida artesanal a base de frutas locales cuidadosamente
+                maceradas, que conserva el sabor y aroma del níspero.
               </p>
-              <p class="producto-price">Desde S/ 3.00</p>
-              <a
-                href="/detalle-prod/second-post"
-                class="btn-premium"
-                style="margin-top: 15px; padding: 8px 16px; font-size: 0.9rem;"
-                >Ver Detalles</a
-              >
+              <p class="producto-price">Desde S/ 8.00</p>
+              <div class="producto-footer">
+                <div class="producto-actions">
+                  <a href="/detalle-prod/third-post" class="btn-secondary-prod"
+                    >Ver Detalles</a
+                  >
+                  <a
+                    href="https://wa.me/51997307782?text=Hola,%20quiero%20más%20información%20sobre%20sus%20productos"
+                    class="btn-premium-prod"
+                  >
+                    <img src={logo1.src} alt="WhatsApp" class="whatsapp-icon" />
+                    Pedir
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
+
+          <!-- Producto 3 -->
           <div class="producto-card">
             <img
-              src="/mermelada.jpg"
-              alt="Productos Naturales"
+              src="/Mermelada-Tun.png"
+              alt="Mermelada de Tuna"
               class="producto-image"
             />
             <div class="producto-content">
               <h3 class="producto-title">Mermelada de Tuna</h3>
               <p class="producto-description">
-                Aceites esenciales, hierbas aromáticas y suplementos naturales
-                para tu bienestar diario.
+                Preparada con tuna madura de la zona, esta mermelada combina
+                dulzura natural y beneficios nutritivos para tu bienestar.
               </p>
-              <p class="producto-price">Desde S/ 8.00</p>
-              <a
-                href="/detalle-prod/third-post"
-                class="btn-premium"
-                style="margin-top: 15px; padding: 8px 16px; font-size: 0.9rem;"
-                >Ver Detalles</a
-              >
+              <p class="producto-price">Desde S/ 4.00</p>
+              <div class="producto-footer">
+                <div class="producto-actions">
+                  <a href="/detalle-prod/fifth-post" class="btn-secondary-prod"
+                    >Ver Detalles</a
+                  >
+                  <a
+                    href="https://wa.me/51997307782?text=Hola,%20quiero%20más%20información%20sobre%20sus%20productos"
+                    class="btn-premium-prod"
+                  >
+                    <img src={logo1.src} alt="WhatsApp" class="whatsapp-icon" />
+                    Pedir
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <a href="/productos">Ver mas</a>
+        <a href="/productos" class="btn-view-more">Ver más</a>
       </section>
 
-      <!-- About Summary Section -->
-
+      <!-- Sobre Nosotros / Productos / Ubicación -->
       <div class="summary-grid">
-        <!-- About Summary Section -->
         <section class="summary-section about-summary">
           <div class="summary-container">
             <h2>Sobre Nosotros</h2>
@@ -959,64 +1335,63 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
               agricultura sostenible y dando a conocer nuestra marca en diversas
               ferias.
             </p>
-            <a href="/about" class="btn-secondary">Conoce Nuestra Historia</a>
+            <a href="/about" class="btn-premium">Conoce Nuestra Historia</a>
           </div>
         </section>
 
-        <!-- Products Summary Section -->
         <section class="summary-section products-summary">
           <div class="summary-container">
             <h2>Nuestros Productos</h2>
             <p>
               Descubre una amplia variedad de comestibles frescos, naturales y
-              saludables: maserados, nectars, mermeladas y más, todos
-              seleccionados con rigor para tu bienestar.
+              saludables: macerados, néctares, mermeladas y más, todos
+              elaborados con amor y dedicación para tu bienestar.
             </p>
-            <a href="/productos" class="btn-secondary">Explorar Productos</a>
+            <a href="/productos" class="btn-premium">Explorar Productos</a>
           </div>
         </section>
 
-        <!-- Location Summary Section -->
         <section class="summary-section location-summary">
           <div class="summary-container">
             <h2>Encuéntranos</h2>
             <p>
-              Visítanos en Jr. puno Nro. 267 - Huamanga – Ayacucho. Horario: Lun
-              - Vie: --- . ¡Te esperamos para ofrecerte lo mejor de la
-              naturaleza!
+              Visítanos en Jr. Puno Nro. 267 - Huamanga, Ayacucho.
+              <br />
+              Horario de atención: Lunes a Viernes de 9:00 a.m. a 6:00 p.m. ¡Te esperamos
+              para ofrecerte lo mejor de la naturaleza!
             </p>
-            <a href="/about#ubicacion" class="btn-secondary">Ver Ubicación</a>
+            <a href="/about#ubicacion" class="btn-premium">Ver Ubicación</a>
           </div>
         </section>
       </div>
 
-      <!-- Testimonials Section -->
+      <!-- Testimonios -->
       <section class="testimonials">
         <h2>Lo Que Dicen Nuestros Clientes</h2>
         <div class="testimonials-grid">
           <div class="testimonial-card">
             <div class="testimonial-rating">★★★★★</div>
             <p class="testimonial-quote">
-              "Los productos de SANYA son de excelente calidad. Siempre
-              encuentro lo que necesito para una alimentación saludable."
+              “Los productos de SANYA son de excelente calidad. Siempre
+              encuentro lo que necesito para una alimentación saludable.”
             </p>
-            <p class="testimonial-author">- María González</p>
+            <p class="testimonial-author">– María González</p>
           </div>
           <div class="testimonial-card">
             <div class="testimonial-rating">★★★★★</div>
             <p class="testimonial-quote">
-              "Me encanta el chocolate artesanal. Es el mejor que he probado.
-              Definitivamente volveré por más."
+              “Me encanta el chocolate artesanal. Es el mejor que he probado.
+              Definitivamente volveré por más.”
             </p>
-            <p class="testimonial-author">- Carlos Rodríguez</p>
+            <p class="testimonial-author">– Carlos Rodríguez</p>
           </div>
           <div class="testimonial-card">
             <div class="testimonial-rating">★★★★★</div>
             <p class="testimonial-quote">
-              "Las mermeladas son deliciosas y naturales. Perfectas para el
-              desayuno. ¡Recomendadas al 100%!"
+              “Las mermeladas son deliciosas y naturales. Perfectas para el
+              desayuno. ¡Recomendadas al 100%!”
             </p>
-            <p class="testimonial-author">- Ana López</p>
+            <p class="testimonial-author">– Ana López</p>
           </div>
         </div>
       </section>

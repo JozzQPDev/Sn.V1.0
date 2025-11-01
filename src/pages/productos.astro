@@ -48,6 +48,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
         margin-bottom: 40px;
         color: #2c3e50;
         position: relative;
+        animation: fadeInUp 0.8s ease-out;
       }
 
       .productos-title::after {
@@ -61,13 +62,21 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
           var(--primary-gold)
         );
         margin: 10px auto;
+        animation: fadeInUp 0.8s ease-out;
       }
+
+      .productos-intro {
+        text-align: center;
+        animation: fadeInUp 0.8s ease-out;
+      }
+      
 
       .productos-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
         gap: 40px;
         margin-top: 50px;
+        animation: fadeInUp 0.8s ease-out;
       }
 
       /* --- Estilos de Tarjeta --- */
@@ -219,6 +228,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
         margin-top: 80px;
         position: relative;
         overflow: hidden;
+        animation: fadeInUp 0.8s ease-out;
       }
 
       .cta-section::before {
@@ -432,18 +442,28 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
     <Header />
     <section class="productos-section" id="productos">
       <h1 class="productos-title">Nuestros Productos Naturales</h1>
+      <p class="productos-intro">
+        En <strong>SANYA S.A.C.</strong> elaboramos productos 100% naturales con
+        frutas frescas de
+        <strong>Acos Vinchos</strong>. Cada creación refleja nuestra pasión por
+        la calidad, el sabor auténtico y el respeto por la naturaleza.
+      </p>
+
+      <hr>
+
       <div class="productos-grid">
+        <!-- Producto 1 -->
         <div class="producto-card">
           <img
-            src="/chocolate.jpg"
-            alt="Frutas Orgánicas"
+            src="/Nectar-Nis.png"
+            alt="Néctar de Níspero"
             class="producto-image"
           />
           <div class="producto-content">
-            <h3 class="producto-title">Nectar de Nispero</h3>
+            <h3 class="producto-title">Néctar de Níspero</h3>
             <p class="producto-description">
-              Selección de frutas frescas cultivadas sin pesticidas, ricas en
-              vitaminas y nutrientes naturales.
+              Refrescante bebida natural elaborada con pulpa de níspero fresco,
+              rica en vitaminas y perfecta para disfrutar en cualquier momento.
             </p>
             <p class="producto-price">Desde S/ 5.00</p>
             <div class="producto-footer">
@@ -463,20 +483,20 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
           </div>
         </div>
 
+        <!-- Producto 2 -->
         <div class="producto-card">
           <img
-            src="/artesania.jpg"
-            alt="Verduras Frescas"
+            src="/Mermelada-Nis.png"
+            alt="Mermelada de Níspero"
             class="producto-image"
           />
           <div class="producto-content">
-            <h3 class="producto-title">Mermelada de Nispero</h3>
+            <h3 class="producto-title">Mermelada de Níspero</h3>
             <p class="producto-description">
-              Verduras de temporada cosechadas en el momento óptimo para
-              garantizar máxima frescura y sabor.
+              Deliciosa mermelada artesanal elaborada con fruta 100% natural,
+              sin conservantes, ideal para acompañar tus desayunos.
             </p>
-            <p class="producto-price">Desde S/ 3.00</p>
-
+            <p class="producto-price">Desde S/ 6.00</p>
             <div class="producto-footer">
               <div class="producto-actions">
                 <a href="/detalle-prod/second-post" class="btn-secondary"
@@ -494,17 +514,18 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
           </div>
         </div>
 
+        <!-- Producto 3 -->
         <div class="producto-card">
           <img
-            src="/mermelada.jpg"
-            alt="Productos Naturales"
+            src="/Macerado-Nis.png"
+            alt="Macerado de Níspero"
             class="producto-image"
           />
           <div class="producto-content">
-            <h3 class="producto-title">Maserado de Nispero</h3>
+            <h3 class="producto-title">Macerado de Níspero</h3>
             <p class="producto-description">
-              Aceites esenciales, hierbas aromáticas y suplementos naturales
-              para tu bienestar diario.
+              Bebida artesanal a base de frutas locales cuidadosamente
+              maceradas, que conserva el sabor y aroma del níspero.
             </p>
             <p class="producto-price">Desde S/ 8.00</p>
             <div class="producto-footer">
@@ -524,17 +545,18 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
           </div>
         </div>
 
+        <!-- Producto 4 -->
         <div class="producto-card">
           <img
-            src="/retablo.jpg"
-            alt="Cereales Integrales"
+            src="/Harina-Nis.png"
+            alt="Harina de Níspero"
             class="producto-image"
           />
           <div class="producto-content">
-            <h3 class="producto-title">Arina de Nispero</h3>
+            <h3 class="producto-title">Harina de Níspero</h3>
             <p class="producto-description">
-              Quinoa, amaranto y otros granos ancestrales ricos en proteínas y
-              fibra natural.
+              Harina natural elaborada a base de níspero deshidratado, ideal
+              para preparar panes, postres o bebidas nutritivas.
             </p>
             <p class="producto-price">Desde S/ 6.00</p>
             <div class="producto-footer">
@@ -554,17 +576,18 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
           </div>
         </div>
 
+        <!-- Producto 5 -->
         <div class="producto-card">
           <img
-            src="/chocolate.jpg"
-            alt="Tés y Infusiones"
+            src="/Mermelada-Tun.png"
+            alt="Mermelada de Tuna"
             class="producto-image"
           />
           <div class="producto-content">
             <h3 class="producto-title">Mermelada de Tuna</h3>
             <p class="producto-description">
-              Mezclas de hierbas orgánicas para infusiones relajantes y
-              beneficiosas para la salud.
+              Preparada con tuna madura de la zona, esta mermelada combina
+              dulzura natural y beneficios nutritivos para tu bienestar.
             </p>
             <p class="producto-price">Desde S/ 4.00</p>
             <div class="producto-footer">
@@ -583,7 +606,6 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
             </div>
           </div>
         </div>
-
       </div>
     </section>
 
