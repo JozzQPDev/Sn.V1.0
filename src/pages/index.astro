@@ -918,48 +918,48 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
           font-size: clamp(0.9rem, 4vw, 1.1rem);
           margin-bottom: 25px;
         }
-        @media (max-width: 480px) {
-          .scroll-indicator {
-            bottom: 20px;
-            width: 22px;
-            height: 38px;
-            border-radius: 20px;
-            border: 2px solid rgba(255, 255, 255, 0.9);
-            animation: bounceMobile 2s ease-in-out infinite;
-          }
 
-          .scroll-indicator::after {
-            top: 6px;
-            width: 3px;
-            height: 10px;
-            animation: scrollDownMobile 2s ease-in-out infinite;
-          }
+        .scroll-indicator {
+          bottom: 20px;
+          width: 22px;
+          height: 38px;
+          border-radius: 20px;
+          border: 2px solid rgba(255, 255, 255, 0.9);
+          animation: bounceMobile 2s ease-in-out infinite;
+          margin-bottom: 10vh;
+        }
 
-          @keyframes bounceMobile {
-            0%,
-            20%,
-            50%,
-            80%,
-            100% {
-              transform: translateX(-50%) translateY(0);
-            }
-            40% {
-              transform: translateX(-50%) translateY(-6px);
-            }
-            60% {
-              transform: translateX(-50%) translateY(-3px);
-            }
-          }
+        .scroll-indicator::after {
+          top: 6px;
+          width: 3px;
+          height: 10px;
+          animation: scrollDownMobile 2s ease-in-out infinite;
+        }
 
-          @keyframes scrollDownMobile {
-            0% {
-              opacity: 1;
-              transform: translateX(-50%) translateY(0);
-            }
-            100% {
-              opacity: 0;
-              transform: translateX(-50%) translateY(14px);
-            }
+        @keyframes bounceMobile {
+          0%,
+          20%,
+          50%,
+          80%,
+          100% {
+            transform: translateX(-50%) translateY(0);
+          }
+          40% {
+            transform: translateX(-50%) translateY(-6px);
+          }
+          60% {
+            transform: translateX(-50%) translateY(-3px);
+          }
+        }
+
+        @keyframes scrollDownMobile {
+          0% {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+          }
+          100% {
+            opacity: 0;
+            transform: translateX(-50%) translateY(14px);
           }
         }
 
