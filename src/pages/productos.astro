@@ -69,7 +69,6 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
         text-align: center;
         animation: fadeInUp 0.8s ease-out;
       }
-      
 
       .productos-grid {
         display: grid;
@@ -95,6 +94,8 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
         transition:
           transform 0.3s ease,
           box-shadow 0.3s ease;
+        height: auto;
+        width: auto;
       }
 
       /* Retrasos de animación omitidos por brevedad */
@@ -106,8 +107,10 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 
       .producto-image {
         width: 100%;
-        height: 220px;
-        object-fit: cover;
+        height: auto;
+        max-height: 300px;
+        object-fit: cover; /* Ajusta el tamaño de la imagen */
+        object-position: center; /* Posición de la imagen */
         transition: transform 0.3s ease;
       }
 
@@ -121,7 +124,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 
       .producto-title {
         font-size: 1.6rem;
-        margin-bottom: 12px;
+        margin-bottom: 2px;
         color: var(--text-dark);
         font-weight: 700;
       }
@@ -313,7 +316,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
           max-width: 100%;
         }
 
-        .producto-card img{
+        .producto-card img {
           height: auto;
         }
 
@@ -449,13 +452,13 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
         la calidad, el sabor auténtico y el respeto por la naturaleza.
       </p>
 
-      <hr>
+      <hr />
 
       <div class="productos-grid">
         <!-- Producto 1 -->
         <div class="producto-card">
           <img
-            src="/Nectar-Nis.png"
+            src="/Nectar-Nis.jpg"
             alt="Néctar de Níspero"
             class="producto-image"
           />
@@ -468,7 +471,8 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
             <p class="producto-price">Desde S/ 5.00</p>
             <div class="producto-footer">
               <div class="producto-actions">
-                <a href="/detalle-prod/first-post" class="btn-secondary"
+                <!--<a href="/detalle-prod/first-post" class="btn-secondary"-->
+                <a href="#" class="btn-secondary"
                   >Ver Detalles</a
                 >
                 <a
@@ -486,7 +490,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
         <!-- Producto 2 -->
         <div class="producto-card">
           <img
-            src="/Mermelada-Nis.png"
+            src="/Mermelada-Nis.jpg"
             alt="Mermelada de Níspero"
             class="producto-image"
           />
@@ -499,7 +503,8 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
             <p class="producto-price">Desde S/ 6.00</p>
             <div class="producto-footer">
               <div class="producto-actions">
-                <a href="/detalle-prod/second-post" class="btn-secondary"
+                <!-- <a href="/detalle-prod/second-post" class="btn-secondary" -->
+                  <a href="#" class="btn-secondary"
                   >Ver Detalles</a
                 >
                 <a
@@ -517,7 +522,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
         <!-- Producto 3 -->
         <div class="producto-card">
           <img
-            src="/Macerado-Nis.png"
+            src="/Macerado-Nis.jpg"
             alt="Macerado de Níspero"
             class="producto-image"
           />
@@ -530,7 +535,8 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
             <p class="producto-price">Desde S/ 35.00</p>
             <div class="producto-footer">
               <div class="producto-actions">
-                <a href="/detalle-prod/third-post" class="btn-secondary"
+                <!--<a href="/detalle-prod/third-post" class="btn-secondary"-->
+                <a href="#" class="btn-secondary"
                   >Ver Detalles</a
                 >
                 <a
@@ -561,7 +567,8 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
             <p class="producto-price">Desde S/ 10.00</p>
             <div class="producto-footer">
               <div class="producto-actions">
-                <a href="/detalle-prod/fourth-post" class="btn-secondary"
+                <!--<a href="/detalle-prod/fourth-post" class="btn-secondary"-->
+                <a href="#" class="btn-secondary"
                   >Ver Detalles</a
                 >
                 <a
@@ -592,7 +599,8 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
             <p class="producto-price">Desde S/ 6.00</p>
             <div class="producto-footer">
               <div class="producto-actions">
-                <a href="/detalle-prod/fifth-post" class="btn-secondary"
+                <!-- <a href="/detalle-prod/fifth-post" class="btn-secondary" -->
+                <a href="#" class="btn-secondary"
                   >Ver Detalles</a
                 >
                 <a

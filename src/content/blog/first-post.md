@@ -1,22 +1,54 @@
 ---
-title: 'Frutas Orgánicas: El Tesoro de la Naturaleza'
-description: 'Descubre las frutas orgánicas cultivadas sin pesticidas, ricas en vitaminas y nutrientes naturales.'
+title: 'Frutas Orgánicas - Detalles del Producto'
+description: 'Información detallada sobre nuestras frutas orgánicas cultivadas sin pesticidas.'
 pubDate: 'Jan 15 2024'
-heroImage: '../../assets/blog-placeholder-3.jpg'
+heroImage: '../../assets/baner.jpg'
 ---
 
-Las frutas orgánicas representan el tesoro más preciado de la naturaleza. Cultivadas sin el uso de pesticidas químicos, herbicidas o fertilizantes sintéticos, estas frutas ofrecen no solo un sabor incomparable, sino también una concentración máxima de vitaminas, minerales y antioxidantes esenciales para nuestra salud.
+## Frutas Orgánicas Premium
 
-En nuestra selección de frutas orgánicas, encontrarás desde las clásicas manzanas y naranjas hasta exóticas opciones como mangos, piñas y frutas de temporada. Cada fruta es cosechada en el momento óptimo de maduración, garantizando que llegue a tu mesa con toda su frescura y propiedades nutricionales intactas.
+Nuestras frutas orgánicas son seleccionadas cuidadosamente de cultivos certificados que respetan el medio ambiente y la salud humana. Cada fruta es cosechada en el momento óptimo de maduración para garantizar la máxima concentración de nutrientes y sabor natural.
 
-Los beneficios de consumir frutas orgánicas van más allá del sabor. Al evitar los residuos químicos, reduces la exposición a sustancias potencialmente dañinas, mientras que apoyas prácticas agrícolas sostenibles que protegen el medio ambiente y la biodiversidad.
+### Características Principales:
+- **Cultivo 100% Orgánico**: Sin pesticidas químicos, herbicidas o fertilizantes sintéticos
+- **Cosecha Sostenible**: Respeta los ciclos naturales de las plantas
+- **Certificación**: Cumple con estándares internacionales de agricultura orgánica
+- **Frescura Garantizada**: Distribución directa desde el campo a tu mesa
 
-Nuestras frutas orgánicas son ideales para:
-- Preparar jugos naturales y smoothies nutritivos
-- Crear postres saludables sin aditivos artificiales
-- Complementar dietas balanceadas ricas en fibra y vitaminas
-- Apoyar un estilo de vida saludable y consciente
+### Variedades Disponibles:
+- **Manzanas**: Dulces y crujientes, perfectas para snacks saludables
+- **Naranjas**: Jugosas y ricas en vitamina C
+- **Plátanos**: Energía natural y potasio esencial
+- **Mangos**: Exóticos y dulces, cultivados en climas tropicales
+- **Piñas**: Refrescantes y digestivas
+- **Frutas de Temporada**: Según disponibilidad estacional
 
-Cada bocado de nuestras frutas orgánicas es una celebración de la pureza natural y el respeto por la tierra que nos sustenta.
+### Beneficios Nutricionales:
+- Alto contenido de vitaminas A, C y del complejo B
+- Antioxidantes naturales que protegen las células
+- Fibra dietética para una digestión saludable
+- Minerales esenciales como potasio, magnesio y calcio
+- Bajo contenido calórico y alto valor nutricional
+
+### Usos y Preparación:
+- Consumo directo como snack saludable
+- Preparación de jugos naturales y smoothies
+- Ingredientes para postres saludables
+- Complemento perfecto para ensaladas frescas
+
+### Precios y Disponibilidad:
+- Desde S/ 5.00 por kilo
+- Disponible todo el año con variedades estacionales
+- Envío a domicilio disponible
+- Compra al por mayor para negocios
+
+### Compromiso con la Sostenibilidad:
+Al elegir nuestras frutas orgánicas, contribuyes a:
+- La preservación de la biodiversidad
+- La reducción de residuos químicos en el suelo
+- El apoyo a agricultores locales
+- Un futuro más saludable para las próximas generaciones
+
+Cada fruta que consumes es una elección consciente por tu salud y el planeta.
 
 [Descubre todos nuestros productos naturales](/productos)
