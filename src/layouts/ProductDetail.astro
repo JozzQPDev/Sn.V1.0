@@ -1,0 +1,766 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
+import FormattedDate from "../components/FormattedDate.astro";
+import Header from "../components/Header.astro";
+import logo1 from "../assets/icon_wats.png";
+
+type Props = CollectionEntry<"detalleProd">["data"];
+
+const { title, description, pubDate, updatedDate, heroImage, galleryImages } =
+  Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+    <style>
+      body {
+        padding-top: 110px; /* Space for fixed header */
+      }
+
+      main {
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 40px 10px;
+        width: 100%;
+      }
+
+      .article-container {
+        display: flex;
+        flex-direction: column;
+        gap: 2em;
+        width: calc(100% - 2em);
+        max-width: 100%;
+        margin: 0;
+      }
+
+      .article-container.reverse {
+        flex-direction: row-reverse;
+      }
+
+      .hero-image {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+      }
+
+      .carousel-container {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        width: 100%;
+        height: 70vh;
+        max-height: 500px;
+      }
+
+      @media (max-width: 768px) {
+        .carousel-container {
+          height: 50vh;
+          max-height: 300px;
+        }
+      }
+
+      .carousel-track {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.5s ease;
+      }
+
+      .carousel-track.looping {
+        transition: none;
+      }
+
+      .carousel-slide {
+        flex: 0 0 100%;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .carousel-slide img {
+        width: auto;
+        height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+        border-radius: 15px;
+        box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+
+      .carousel-slide img:hover {
+        transform: scale(1.02);
+      }
+
+      .carousel-container {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .carousel-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 24px;
+        z-index: 10;
+        transition: background-color 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .carousel-arrow:hover {
+        background: rgba(0, 0, 0, 0.8);
+      }
+
+      .carousel-arrow.left {
+        left: 20px;
+      }
+
+      .carousel-arrow.right {
+        right: 20px;
+      }
+
+      .carousel-indicators {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 10px;
+      }
+
+      .carousel-indicator {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .carousel-indicator.active {
+        background: white;
+      }
+
+      .gallery-thumbnails {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        margin-top: 20px;
+        flex-wrap: wrap;
+      }
+
+      .gallery-thumbnails img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 8px;
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: border-color 0.3s ease;
+      }
+
+      .gallery-thumbnails img:hover,
+      .gallery-thumbnails img.active {
+        border-color: var(--primary-green);
+      }
+
+      .lightbox {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .lightbox.active {
+        display: flex;
+      }
+
+      .lightbox img {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+      }
+
+      .lightbox-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        color: white;
+        font-size: 2em;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .title {
+        margin-bottom: 1em;
+        padding: 1em 0;
+        text-align: center;
+        line-height: 1;
+      }
+      .title h1 {
+        margin: 0 0 0.5em 0;
+      }
+      .date {
+        margin-bottom: 0.5em;
+        color: rgb(var(--gray));
+      }
+      .last-updated-on {
+        font-style: italic;
+      }
+
+      .article-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 2em;
+        margin-bottom: 3em;
+        flex-wrap: wrap;
+      }
+
+      /* Imagen y carrusel */
+      .image-column {
+        flex: 1.2;
+        min-width: 300px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      /* Información al costado */
+      .info-column {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+      }
+
+      .info-column .title {
+        text-align: left;
+      }
+
+      .extra-content {
+        margin-top: 3em;
+        text-align: justify;
+        line-height: 1.6;
+        color: rgb(var(--gray-dark));
+      }
+
+      /* --- Estilos de Botones --- */
+      /* Botón Principal (Pedir/WhatsApp) */
+      .btn-premium-prod {
+        font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+          "Lucida Sans", Arial, sans-serif;
+        position: relative; /* Necesario para el pseudo-elemento ::before */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 10vh;
+        gap: 6px;
+        padding: 8px 18px;
+        background: linear-gradient(
+          135deg,
+          var(--primary-green),
+          var(--primary-gold)
+        );
+        color: var(--pure-white);
+        font-size: 0.98rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(46, 139, 87, 0.4);
+        overflow: hidden; /* Para que el brillo no se salga del borde redondeado */
+        transition: all 0.3s ease;
+      }
+
+      .btn-premium-prod::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.4),
+          transparent
+        );
+        transition: left 0.5s ease;
+      }
+
+      .btn-premium-prod:hover::before {
+        left: 100%;
+      }
+
+      .btn-premium-prod:hover {
+        transform: translateY(-3px) scale(1.03);
+        box-shadow: 0 12px 25px rgba(46, 139, 87, 0.35);
+      }
+
+      /* Estilos para el icono de WhatsApp */
+      .whatsapp-icon {
+        width: 25px;
+        height: 25px;
+        margin-right: 1px;
+        vertical-align: middle;
+      }
+
+      /* RESPONSIVO MEJORADO */
+      @media (max-width: 1024px) {
+        main {
+          padding: 25px 15px;
+        }
+
+        .article-container {
+          flex-direction: column;
+          gap: 1.5em;
+          align-items: center;
+        }
+
+        .hero-image {
+          max-width: 100%;
+          margin-bottom: 20px;
+        }
+
+        .carousel-container {
+          height: 55vh;
+          max-height: 400px;
+        }
+
+        .carousel-arrow {
+          width: 45px;
+          height: 45px;
+          font-size: 20px;
+        }
+
+        .prose {
+          max-width: 90%;
+          text-align: justify;
+        }
+        .article-header {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .image-column,
+        .info-column {
+          width: 100%;
+        }
+
+        .info-column .title {
+          text-align: center;
+        }
+
+        .extra-content {
+          margin-top: 2em;
+        }
+      }
+
+      @media (max-width: 768px) {
+        body {
+          padding-top: 80px;
+        }
+
+        .carousel-container {
+          height: 45vh;
+          max-height: 320px;
+        }
+
+        .carousel-arrow {
+          width: 40px;
+          height: 40px;
+          font-size: 18px;
+        }
+
+        .carousel-indicators {
+          bottom: 10px;
+          gap: 6px;
+        }
+
+        .carousel-indicator {
+          width: 10px;
+          height: 10px;
+        }
+
+        .gallery-thumbnails {
+          gap: 10px;
+          overflow-x: auto;
+          justify-content: flex-start;
+          padding: 10px 5px;
+          scrollbar-width: none; /* Oculta barra en Firefox */
+        }
+
+        .gallery-thumbnails::-webkit-scrollbar {
+          display: none; /* Oculta barra en Chrome/Safari */
+        }
+
+        .gallery-thumbnails img {
+          width: 80px;
+          height: 80px;
+        }
+
+        .prose {
+          padding: 0 15px;
+          font-size: 0.95rem;
+        }
+
+        .title h1 {
+          font-size: 1.4em;
+          line-height: 1.2;
+        }
+
+        .date {
+          font-size: 0.9em;
+        }
+
+        .lightbox img {
+          max-width: 95%;
+          max-height: 80%;
+        }
+      }
+
+      @media (max-width: 480px) {
+        main {
+          max-width: 380px;
+          margin: 0 auto;
+          width: 100%;
+        }
+
+        .article-container {
+          display: flex;
+          flex-direction: column;
+          gap: 2em;
+          width: auto;
+        }
+
+        .carousel-container {
+          height: 48vh;
+          max-height: 290px;
+        }
+
+        .carousel-arrow {
+          width: 36px;
+          height: 36px;
+          font-size: 16px;
+        }
+
+        .gallery-thumbnails img {
+          width: 65px;
+          height: 65px;
+        }
+
+        .title h1 {
+          font-size: 1.2em;
+        }
+
+        .prose {
+          text-align: left;
+          font-size: 0.9rem;
+        }
+      }
+
+      /* Responsivo */
+    </style>
+  </head>
+
+  <body>
+    <Header />
+    <main>
+      <article>
+        <div class="article-header">
+          <div class="image-column">
+            <!-- Carrusel e imágenes -->
+            {
+              galleryImages && galleryImages.length > 1 ? (
+                <div class="carousel-container">
+                  <button class="carousel-arrow left" id="prev-arrow">
+                    ‹
+                  </button>
+                  <div class="carousel-track" id="carousel-track">
+                    {galleryImages.map((img, index) => (
+                      <div class="carousel-slide">
+                        <Image
+                          width={1020}
+                          height={510}
+                          src={img}
+                          alt={`Slide ${index + 1}`}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                  <button class="carousel-arrow right" id="next-arrow">
+                    ›
+                  </button>
+                  <div class="carousel-indicators" id="indicators">
+                    {galleryImages.map((_, index) => (
+                      <div
+                        class="carousel-indicator"
+                        data-index={index}
+                        class:list={{ active: index === 0 }}
+                      />
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                heroImage && (
+                  <div class="carousel-container">
+                    <Image width={1020} height={510} src={heroImage} alt="" />
+                  </div>
+                )
+              )
+            }
+
+            {
+              galleryImages && galleryImages.length > 1 && (
+                <div class="gallery-thumbnails">
+                  {galleryImages.map((img, index) => (
+                    <Image
+                      width={100}
+                      height={100}
+                      src={img}
+                      alt={`Miniatura ${index + 1}`}
+                      class:list={["gallery-thumb", { active: index === 0 }]}
+                      data-index={index}
+                    />
+                  ))}
+                </div>
+              )
+            }
+          </div>
+
+          <div class="info-column">
+            <div class="title">
+              <h1>{title}</h1>
+              <p class="date">
+                <FormattedDate date={pubDate} />
+                {
+                  updatedDate && (
+                    <span class="last-updated-on">
+                                          (Última actualización:{" "}
+                      <FormattedDate date={updatedDate} />)                  {" "}
+                    </span>
+                  )
+                }
+              </p>
+            </div>
+
+            <slot name="resumen" />
+            <a
+              href="https://wa.me/51997307782?text=Hola,%20quiero%20más%20información%20sobre%20sus%20productos"
+              class="btn-premium-prod"
+            >
+              <img src={logo1.src} alt="WhatsApp" class="whatsapp-icon" />
+              Pedir
+            </a>
+          </div>
+        </div>
+
+        <!-- Información extendida debajo -->
+        <div class="extra-content">
+          <slot />
+        </div>
+      </article>
+    </main>
+    <Footer />
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+      <span class="lightbox-close" id="lightbox-close">&times;</span>
+      <img id="lightbox-image" src="" alt="" />
+    </div>
+  </body>
+</html>
+
+<script>
+  // Gallery functionality
+  const carouselTrack = document.getElementById(
+    "carousel-track"
+  ) as HTMLElement | null;
+  const thumbnails = document.querySelectorAll(
+    ".gallery-thumb"
+  ) as NodeListOf<HTMLImageElement>;
+  const lightbox = document.getElementById("lightbox") as HTMLElement | null;
+  const lightboxImage = document.getElementById(
+    "lightbox-image"
+  ) as HTMLImageElement | null;
+  const lightboxClose = document.getElementById(
+    "lightbox-close"
+  ) as HTMLElement | null;
+
+  // Carousel functionality
+  const prevArrow = document.getElementById(
+    "prev-arrow"
+  ) as HTMLButtonElement | null;
+  const nextArrow = document.getElementById(
+    "next-arrow"
+  ) as HTMLButtonElement | null;
+  const indicators = document.querySelectorAll(
+    ".carousel-indicator"
+  ) as NodeListOf<HTMLElement>;
+
+  let currentIndex = 0;
+  let autoPlayInterval: ReturnType<typeof setInterval> | null = null;
+  const galleryImages = Array.from(thumbnails).map(
+    (t) => t.src // Usar la propiedad 'src' de la etiqueta <img>.
+  );
+  function updateCarousel(index: number, isLooping = false) {
+    if (carouselTrack) {
+      if (isLooping) {
+        // For looping effect, temporarily disable transition
+        carouselTrack.classList.add("looping");
+        carouselTrack.style.transform = `translateX(-${index * 100}%)`;
+
+        // Force reflow to apply the change without transition
+        carouselTrack.offsetHeight;
+
+        // Re-enable transition for smooth sliding
+        setTimeout(() => {
+          carouselTrack.classList.remove("looping");
+        }, 10);
+      } else {
+        // Normal sliding with transition
+        carouselTrack.style.transform = `translateX(-${index * 100}%)`;
+      }
+    }
+
+    // Update thumbnails with smooth transition
+    thumbnails.forEach((thumb, i) => {
+      thumb.classList.toggle("active", i === index);
+    });
+
+    // Update indicators with smooth transition
+    indicators.forEach((indicator, i) => {
+      indicator.classList.toggle("active", i === index);
+    });
+  }
+
+  function startAutoPlay() {
+    if (galleryImages.length > 1) {
+      autoPlayInterval = setInterval(() => {
+        const newIndex = (currentIndex + 1) % galleryImages.length;
+        const isLooping =
+          currentIndex === galleryImages.length - 1 && newIndex === 0;
+        currentIndex = newIndex;
+        updateCarousel(currentIndex, isLooping);
+      }, 3000); // Cambia cada 3 segundos
+    }
+  }
+
+  function stopAutoPlay() {
+    if (autoPlayInterval) {
+      clearInterval(autoPlayInterval);
+      autoPlayInterval = null;
+    }
+  }
+
+  // Start auto-play when page loads
+  startAutoPlay();
+
+  // Change main image when thumbnail is clicked
+  thumbnails.forEach((thumb) => {
+    thumb.addEventListener("click", () => {
+      stopAutoPlay();
+      const index = parseInt(thumb.dataset.index || "0");
+      currentIndex = index;
+      updateCarousel(currentIndex);
+      startAutoPlay();
+    });
+  });
+
+  // Carousel arrow navigation
+  if (prevArrow) {
+    prevArrow.addEventListener("click", () => {
+      stopAutoPlay();
+      const newIndex =
+        (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+      const isLooping =
+        currentIndex === 0 && newIndex === galleryImages.length - 1;
+      currentIndex = newIndex;
+      updateCarousel(currentIndex, isLooping);
+      startAutoPlay();
+    });
+  }
+
+  if (nextArrow) {
+    nextArrow.addEventListener("click", () => {
+      stopAutoPlay();
+      const newIndex = (currentIndex + 1) % galleryImages.length;
+      const isLooping =
+        currentIndex === galleryImages.length - 1 && newIndex === 0;
+      currentIndex = newIndex;
+      updateCarousel(currentIndex, isLooping);
+      startAutoPlay();
+    });
+  }
+
+  // Indicator navigation
+  indicators.forEach((indicator) => {
+    indicator.addEventListener("click", () => {
+      stopAutoPlay();
+      const index = parseInt(indicator.dataset.index || "0");
+      currentIndex = index;
+      updateCarousel(currentIndex);
+      startAutoPlay();
+    });
+  });
+
+  // Open lightbox when carousel images are clicked
+  const carouselImages = document.querySelectorAll(
+    ".carousel-slide img"
+  ) as NodeListOf<HTMLImageElement>;
+  carouselImages.forEach((img) => {
+    img.addEventListener("click", () => {
+      if (lightboxImage && lightbox) {
+        lightboxImage.src = img.src;
+        lightbox.classList.add("active");
+      }
+    });
+  });
+
+  // Close lightbox
+  if (lightboxClose) {
+    lightboxClose.addEventListener("click", () => {
+      if (lightbox) {
+        lightbox.classList.remove("active");
+      }
+    });
+  }
+
+  // Close lightbox when clicking outside the image
+  if (lightbox) {
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) {
+        lightbox.classList.remove("active");
+      }
+    });
+  }
+</script>

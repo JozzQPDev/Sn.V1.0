@@ -2,7 +2,7 @@
 import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
-import logo1 from "../assets/whatsapp.png";
+import logo1 from "../assets/icon_wats.png";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 ---
 
@@ -574,6 +574,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
       /* --- Estilos de Botones --- */
       /* Botón Principal (Pedir/WhatsApp) */
       .btn-premium-prod {
+         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         position: relative; /* Necesario para el pseudo-elemento ::before */
         display: flex;
         align-items: center;
@@ -586,7 +587,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
           var(--primary-gold)
         );
         color: var(--pure-white);
-        font-size: 0.9rem;
+        font-size: 0.98rem;
         border-radius: 50px;
         text-decoration: none;
         font-weight: 600;
@@ -648,7 +649,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
       .whatsapp-icon {
         width: 25px;
         height: 25px;
-        margin-right: 6px;
+        margin-right: 1px;
         vertical-align: middle;
       }
 
@@ -1248,8 +1249,8 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
               <p class="producto-price">Desde S/ 5.00</p>
               <div class="producto-footer">
                 <div class="producto-actions">
-                  <!-- <a href="/detalle-prod/first-post" class="btn-secondary-prod" -->
-                  <a href="#" class="btn-secondary-prod">Ver Detalles</a>
+
+                  <a href="/detalle-prod/nectar-nispero" class="btn-secondary-prod">Ver Detalles</a>
                   <a
                     href="https://wa.me/51997307782?text=Hola,%20quiero%20más%20información%20sobre%20sus%20productos"
                     class="btn-premium-prod"
@@ -1278,8 +1279,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
               <p class="producto-price">Desde S/ 35.00</p>
               <div class="producto-footer">
                 <div class="producto-actions">
-                  <!--<a href="/detalle-prod/third-post" class="btn-secondary-prod"-->
-                  <a href="#" class="btn-secondary-prod"
+                  <a href="/detalle-prod/macerado-nispero" class="btn-secondary-prod"
                     >Ver Detalles</a
                   >
                   <a
@@ -1310,8 +1310,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
               <p class="producto-price">Desde S/ 6.00</p>
               <div class="producto-footer">
                 <div class="producto-actions">
-                 <!-- <a href="/detalle-prod/second-post" class="btn-secondary-prod" --> 
-                  <a href="#" class="btn-secondary-prod"
+                  <a href="/detalle-prod/mermelada-nispero" class="btn-secondary-prod"
                     >Ver Detalles</a
                   >
                   <a

@@ -2,7 +2,7 @@
 import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
-import logo1 from "../assets/whatsapp.png";
+import logo1 from "../assets/icon_wats.png";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 ---
 
@@ -34,10 +34,18 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
         padding-top: 90px;
         background-color: #f7f7f7; /* Fondo ligero para resaltar las tarjetas */
       }
+      main {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center; /* centra horizontalmente */
+        width: 100%;
+        padding: 40px auto;
+        font-family: "Atkinson", sans-serif;
+      }
 
       /* --- Sección Principal --- */
       .productos-section {
-        padding: 60px 20px;
+        padding: 1px 20px;
         max-width: 1200px;
         margin: 0 auto;
       }
@@ -163,13 +171,13 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 
       .producto-actions {
         display: flex;
-        gap: 120px; /* Espacio entre los botones */
+        gap: 110px; /* Espacio entre los botones */
         flex-wrap: wrap;
       }
 
       /* --- Estilos de Botones --- */
-      /* Botón Principal (Pedir/WhatsApp) */
       .btn-premium {
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         display: flex; /* Para alinear el icono de WhatsApp */
         align-items: center;
         padding: 6px 14px; /* Un poco más grande para el icono */
@@ -179,7 +187,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
           var(--primary-gold)
         );
         color: var(--pure-white);
-        font-size: 0.85rem;
+        font-size: 0.98rem;
         border-radius: 50px;
         text-decoration: none;
         font-weight: 600;
@@ -346,7 +354,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 
         .producto-actions {
           width: 100%;
-          gap: 150px;
+          gap: 110px;
           justify-content: space-between;
         }
 
@@ -443,187 +451,176 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 
   <body>
     <Header />
-    <section class="productos-section" id="productos">
-      <h1 class="productos-title">Nuestros Productos Naturales</h1>
-      <p class="productos-intro">
-        En <strong>SANYA S.A.C.</strong> elaboramos productos 100% naturales con
-        frutas frescas de
-        <strong>Acos Vinchos</strong>. Cada creación refleja nuestra pasión por
-        la calidad, el sabor auténtico y el respeto por la naturaleza.
-      </p>
+    <main>
+      <section class="productos-section" id="productos">
+        <h1 class="productos-title">Nuestros Productos Naturales</h1>
+        <p class="productos-intro">
+          En <strong>SANYA S.A.C.</strong> elaboramos productos 100% naturales con
+          frutas frescas de
+          <strong>Acos Vinchos</strong>. Cada creación refleja nuestra pasión
+          por la calidad, el sabor auténtico y el respeto por la naturaleza.
+        </p>
 
-      <hr />
+        <hr />
 
-      <div class="productos-grid">
-        <!-- Producto 1 -->
-        <div class="producto-card">
-          <img
-            src="/Nectar-Nis.jpg"
-            alt="Néctar de Níspero"
-            class="producto-image"
-          />
-          <div class="producto-content">
-            <h3 class="producto-title">Néctar de Níspero</h3>
-            <p class="producto-description">
-              Refrescante bebida natural elaborada con pulpa de níspero fresco,
-              rica en vitaminas y perfecta para disfrutar en cualquier momento.
-            </p>
-            <p class="producto-price">Desde S/ 5.00</p>
-            <div class="producto-footer">
-              <div class="producto-actions">
-                <!--<a href="/detalle-prod/first-post" class="btn-secondary"-->
-                <a href="#" class="btn-secondary"
-                  >Ver Detalles</a
-                >
-                <a
-                  href="https://wa.me/51997307782?text=Hola,%20quiero%20más%20información%20sobre%20sus%20productos"
-                  class="btn-premium"
-                >
-                  <img src={logo1.src} alt="WhatsApp" class="whatsapp-icon" />
-                  Pedir
-                </a>
+        <div class="productos-grid">
+          <!-- Producto 1 -->
+          <div class="producto-card">
+            <img
+              src="/Nectar-Nis.jpg"
+              alt="Néctar de Níspero"
+              class="producto-image"
+            />
+            <div class="producto-content">
+              <h3 class="producto-title">Néctar de Níspero</h3>
+              <p class="producto-description">
+                Refrescante bebida natural elaborada con pulpa de níspero
+                fresco, rica en vitaminas y perfecta para disfrutar en cualquier
+                momento.
+              </p>
+              <p class="producto-price">Desde S/ 5.00</p>
+              <div class="producto-footer">
+                <div class="producto-actions">
+                  <a href="/detalle-prod/nectar-nispero" class="btn-secondary">Ver Detalles</a>
+                  <a
+                    href="https://wa.me/51997307782?text=Hola,%20quiero%20más%20información%20sobre%20sus%20productos"
+                    class="btn-premium"
+                  >
+                    <img src={logo1.src} alt="WhatsApp" class="whatsapp-icon" />
+                    Pedir
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Producto 2 -->
+          <div class="producto-card">
+            <img
+              src="/Mermelada-Nis.jpg"
+              alt="Mermelada de Níspero"
+              class="producto-image"
+            />
+            <div class="producto-content">
+              <h3 class="producto-title">Mermelada de Níspero</h3>
+              <p class="producto-description">
+                Deliciosa mermelada artesanal elaborada con fruta 100% natural,
+                sin conservantes, ideal para acompañar tus desayunos.
+              </p>
+              <p class="producto-price">Desde S/ 6.00</p>
+              <div class="producto-footer">
+                <div class="producto-actions">
+                  <a href="/detalle-prod/mermelada-nispero" class="btn-secondary">Ver Detalles</a>
+                  <a
+                    href="https://wa.me/51997307782?text=Hola,%20quiero%20más%20información%20sobre%20sus%20productos"
+                    class="btn-premium"
+                  >
+                    <img src={logo1.src} alt="WhatsApp" class="whatsapp-icon" />
+                    Pedir
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Producto 3 -->
+          <div class="producto-card">
+            <img
+              src="/Macerado-Nis.jpg"
+              alt="Macerado de Níspero"
+              class="producto-image"
+            />
+            <div class="producto-content">
+              <h3 class="producto-title">Macerado de Níspero</h3>
+              <p class="producto-description">
+                Bebida artesanal a base de frutas locales cuidadosamente
+                maceradas, que conserva el sabor y aroma del níspero.
+              </p>
+              <p class="producto-price">Desde S/ 35.00</p>
+              <div class="producto-footer">
+                <div class="producto-actions">
+                  <a href="/detalle-prod/macerado-nispero" class="btn-secondary">Ver Detalles</a>
+                  <a
+                    href="https://wa.me/51997307782?text=Hola,%20quiero%20más%20información%20sobre%20sus%20productos"
+                    class="btn-premium"
+                  >
+                    <img src={logo1.src} alt="WhatsApp" class="whatsapp-icon" />
+                    Pedir
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Producto 4 -->
+          <div class="producto-card">
+            <img
+              src="/Harina-Nis.png"
+              alt="Harina de Níspero"
+              class="producto-image"
+            />
+            <div class="producto-content">
+              <h3 class="producto-title">Harina de Níspero</h3>
+              <p class="producto-description">
+                Harina natural elaborada a base de níspero deshidratado, ideal
+                para preparar panes, postres o bebidas nutritivas.
+              </p>
+              <p class="producto-price">Desde S/ 10.00</p>
+              <div class="producto-footer">
+                <div class="producto-actions">
+                  <a href="/detalle-prod/harina-nispero" class="btn-secondary">Ver Detalles</a>
+                  <a
+                    href="https://wa.me/51997307782?text=Hola,%20quiero%20más%20información%20sobre%20sus%20productos"
+                    class="btn-premium"
+                  >
+                    <img src={logo1.src} alt="WhatsApp" class="whatsapp-icon" />
+                    Pedir
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Producto 5 -->
+          <div class="producto-card">
+            <img
+              src="/Mermelada-Tun.png"
+              alt="Mermelada de Tuna"
+              class="producto-image"
+            />
+            <div class="producto-content">
+              <h3 class="producto-title">Mermelada de Tuna</h3>
+              <p class="producto-description">
+                Preparada con tuna madura de la zona, esta mermelada combina
+                dulzura natural y beneficios nutritivos para tu bienestar.
+              </p>
+              <p class="producto-price">Desde S/ 6.00</p>
+              <div class="producto-footer">
+                <div class="producto-actions">
+                  <a href="/detalle-prod/mermelada-tuna" class="btn-secondary">Ver Detalles</a>
+                  <a
+                    href="https://wa.me/51997307782?text=Hola,%20quiero%20más%20información%20sobre%20sus%20productos"
+                    class="btn-premium"
+                  >
+                    <img src={logo1.src} alt="WhatsApp" class="whatsapp-icon" />
+                    Pedir
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </div>
+      </section>
 
-        <!-- Producto 2 -->
-        <div class="producto-card">
-          <img
-            src="/Mermelada-Nis.jpg"
-            alt="Mermelada de Níspero"
-            class="producto-image"
-          />
-          <div class="producto-content">
-            <h3 class="producto-title">Mermelada de Níspero</h3>
-            <p class="producto-description">
-              Deliciosa mermelada artesanal elaborada con fruta 100% natural,
-              sin conservantes, ideal para acompañar tus desayunos.
-            </p>
-            <p class="producto-price">Desde S/ 6.00</p>
-            <div class="producto-footer">
-              <div class="producto-actions">
-                <!-- <a href="/detalle-prod/second-post" class="btn-secondary" -->
-                  <a href="#" class="btn-secondary"
-                  >Ver Detalles</a
-                >
-                <a
-                  href="https://wa.me/51997307782?text=Hola,%20quiero%20más%20información%20sobre%20sus%20productos"
-                  class="btn-premium"
-                >
-                  <img src={logo1.src} alt="WhatsApp" class="whatsapp-icon" />
-                  Pedir
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Producto 3 -->
-        <div class="producto-card">
-          <img
-            src="/Macerado-Nis.jpg"
-            alt="Macerado de Níspero"
-            class="producto-image"
-          />
-          <div class="producto-content">
-            <h3 class="producto-title">Macerado de Níspero</h3>
-            <p class="producto-description">
-              Bebida artesanal a base de frutas locales cuidadosamente
-              maceradas, que conserva el sabor y aroma del níspero.
-            </p>
-            <p class="producto-price">Desde S/ 35.00</p>
-            <div class="producto-footer">
-              <div class="producto-actions">
-                <!--<a href="/detalle-prod/third-post" class="btn-secondary"-->
-                <a href="#" class="btn-secondary"
-                  >Ver Detalles</a
-                >
-                <a
-                  href="https://wa.me/51997307782?text=Hola,%20quiero%20más%20información%20sobre%20sus%20productos"
-                  class="btn-premium"
-                >
-                  <img src={logo1.src} alt="WhatsApp" class="whatsapp-icon" />
-                  Pedir
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Producto 4 -->
-        <div class="producto-card">
-          <img
-            src="/Harina-Nis.png"
-            alt="Harina de Níspero"
-            class="producto-image"
-          />
-          <div class="producto-content">
-            <h3 class="producto-title">Harina de Níspero</h3>
-            <p class="producto-description">
-              Harina natural elaborada a base de níspero deshidratado, ideal
-              para preparar panes, postres o bebidas nutritivas.
-            </p>
-            <p class="producto-price">Desde S/ 10.00</p>
-            <div class="producto-footer">
-              <div class="producto-actions">
-                <!--<a href="/detalle-prod/fourth-post" class="btn-secondary"-->
-                <a href="#" class="btn-secondary"
-                  >Ver Detalles</a
-                >
-                <a
-                  href="https://wa.me/51997307782?text=Hola,%20quiero%20más%20información%20sobre%20sus%20productos"
-                  class="btn-premium"
-                >
-                  <img src={logo1.src} alt="WhatsApp" class="whatsapp-icon" />
-                  Pedir
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Producto 5 -->
-        <div class="producto-card">
-          <img
-            src="/Mermelada-Tun.png"
-            alt="Mermelada de Tuna"
-            class="producto-image"
-          />
-          <div class="producto-content">
-            <h3 class="producto-title">Mermelada de Tuna</h3>
-            <p class="producto-description">
-              Preparada con tuna madura de la zona, esta mermelada combina
-              dulzura natural y beneficios nutritivos para tu bienestar.
-            </p>
-            <p class="producto-price">Desde S/ 6.00</p>
-            <div class="producto-footer">
-              <div class="producto-actions">
-                <!-- <a href="/detalle-prod/fifth-post" class="btn-secondary" -->
-                <a href="#" class="btn-secondary"
-                  >Ver Detalles</a
-                >
-                <a
-                  href="https://wa.me/51997307782?text=Hola,%20quiero%20más%20información%20sobre%20sus%20productos"
-                  class="btn-premium"
-                >
-                  <img src={logo1.src} alt="WhatsApp" class="whatsapp-icon" />
-                  Pedir
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="cta-section">
-      <h2>¡Descubre el Sabor de lo Natural!</h2>
-      <p>
-        Visítanos y encuentra todo lo que necesitas para una alimentación
-        saludable.
-      </p>
-      <a href="/" class="btn-premium">Volver al Inicio</a>
-    </section>
-  </body><Footer />
+      <section class="cta-section">
+        <h2>¡Descubre el Sabor de lo Natural!</h2>
+        <p>
+          Visítanos y encuentra todo lo que necesitas para una alimentación
+          saludable.
+        </p>
+        <a href="/" class="btn-premium">Volver al Inicio</a>
+      </section>
+    </main>
+    <Footer />
+  </body>
 </html>
