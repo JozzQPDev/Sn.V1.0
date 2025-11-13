@@ -1,8 +1,7 @@
-# TODO: Implementar Carrusel de Imágenes en Detalle de Productos
+# TODO: Fix Resumen Slot Display Issue
 
-## Tareas Pendientes
-- [x] Modificar el layout ProductDetail.astro para agregar flechas de navegación y indicadores (dots) al carrusel
-- [x] Actualizar CSS para estilos de flechas, indicadores y miniaturas de mejor calidad
-- [x] Actualizar JavaScript para manejar navegación con flechas e indicadores
-- [x] Aumentar el tamaño de las miniaturas para preservar calidad (de 80x80 a 100x100)
-- [x] Probar la funcionalidad del carrusel en productos con múltiples imágenes
+## Steps to Complete
+- [x] Update ProductDetail.astro to display resumen from props instead of slot
+- [x] Update nectar-nispero.md to move resumen content to frontmatter
+- [x] Check other product markdown files for similar slot usage and update if needed
+- [x] Test the product detail page to verify resumen displays correctly

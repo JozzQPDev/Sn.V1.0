@@ -29,6 +29,16 @@ const detalleProd = defineCollection({
 			updatedDate: z.coerce.date().optional(),
 			heroImage: image().optional(),
 			galleryImages: z.array(image()).optional(),
+			resumen: z.string().optional(),
+			precio: z.string().optional(),
+			name: z.string().optional(),
+			descrip: z.string().optional(),
+			caracteristicas: z.array(z.string()).optional(),
+			beneficios: z.array(z.string()).optional(),
+			modopreparacion: z.array(z.string()).optional(),
+			usos: z.array(z.string()).optional(),
+			compromiso: z.array(z.string()).optional(),
+			recomendaciones: z.array(z.string()).optional(),
 		}),
 });
 

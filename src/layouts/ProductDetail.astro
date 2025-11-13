@@ -9,8 +9,24 @@ import logo1 from "../assets/icon_wats.png";
 
 type Props = CollectionEntry<"detalleProd">["data"];
 
-const { title, description, pubDate, updatedDate, heroImage, galleryImages } =
-  Astro.props;
+const {
+  title,
+  description,
+  pubDate,
+  updatedDate,
+  heroImage,
+  galleryImages,
+  resumen,
+  precio,
+  name,
+  descrip,
+  caracteristicas,
+  beneficios,
+  modopreparacion,
+  usos,
+  compromiso,
+  recomendaciones,
+} = Astro.props;
 ---
 
 <html lang="en">
@@ -18,7 +34,7 @@ const { title, description, pubDate, updatedDate, heroImage, galleryImages } =
     <BaseHead title={title} description={description} />
     <style>
       body {
-        padding-top: 110px; /* Space for fixed header */
+        padding-top: 80px; /* Space for fixed header */
       }
 
       main {
@@ -220,19 +236,63 @@ const { title, description, pubDate, updatedDate, heroImage, galleryImages } =
 
       .title {
         margin-bottom: 1em;
-        padding: 1em 0;
+        padding: 2px 0;
         text-align: center;
-        line-height: 1;
       }
+
       .title h1 {
-        margin: 0 0 0.5em 0;
+        margin: 0 0 0.1em 0;
       }
+
       .date {
-        margin-bottom: 0.5em;
         color: rgb(var(--gray));
       }
+
       .last-updated-on {
         font-style: italic;
+      }
+
+      .resumen {
+        padding-bottom: 2px;
+      }
+
+      .detail-info {
+        margin-top: 50px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 1px;
+        display: flex;
+      }
+
+      .precio {
+        font-size: 3.3rem;
+        font-weight: 800;
+        color: var(--primary-green);
+        display: inline-block;
+        background: linear-gradient(
+          135deg,
+          var(--primary-green),
+          var(--primary-gold)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        position: relative;
+      }
+
+      .precio::after {
+        content: '';
+        position: absolute;
+        bottom: 1px;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(
+          135deg,
+          var(--primary-green),
+          var(--primary-gold)
+        );
       }
 
       .article-header {
@@ -267,7 +327,7 @@ const { title, description, pubDate, updatedDate, heroImage, galleryImages } =
 
       .extra-content {
         margin-top: 3em;
-        text-align: justify;
+        text-align: center;
         line-height: 1.6;
         color: rgb(var(--gray-dark));
       }
@@ -283,14 +343,14 @@ const { title, description, pubDate, updatedDate, heroImage, galleryImages } =
         justify-content: center;
         width: 10vh;
         gap: 6px;
-        padding: 8px 18px;
+        padding: 12px 30px;
         background: linear-gradient(
           135deg,
           var(--primary-green),
           var(--primary-gold)
         );
         color: var(--pure-white);
-        font-size: 0.98rem;
+        font-size: 1.4rem;
         border-radius: 50px;
         text-decoration: none;
         font-weight: 600;
@@ -328,10 +388,15 @@ const { title, description, pubDate, updatedDate, heroImage, galleryImages } =
 
       /* Estilos para el icono de WhatsApp */
       .whatsapp-icon {
-        width: 25px;
-        height: 25px;
+        width: 30px;
+        height: 30px;
         margin-right: 1px;
         vertical-align: middle;
+      }
+
+      /* Clase para las claves de caracteristicas */
+      .caracteristica-key {
+        font-weight: bold;
       }
 
       /* RESPONSIVO MEJORADO */
@@ -446,6 +511,10 @@ const { title, description, pubDate, updatedDate, heroImage, galleryImages } =
           max-width: 95%;
           max-height: 80%;
         }
+
+        .caracteristica-key {
+          font-size: 0.9rem;
+        }
       }
 
       @media (max-width: 480px) {
@@ -453,6 +522,15 @@ const { title, description, pubDate, updatedDate, heroImage, galleryImages } =
           max-width: 380px;
           margin: 0 auto;
           width: 100%;
+        }
+        
+        .precio{
+          font-size: 2.2em;
+        }
+
+        .btn-premium-prod{
+          padding: 5px 10px;
+          font-size: 1.2em;
         }
 
         .article-container {
@@ -473,19 +551,32 @@ const { title, description, pubDate, updatedDate, heroImage, galleryImages } =
           font-size: 16px;
         }
 
-        .gallery-thumbnails img {
-          width: 65px;
-          height: 65px;
+        .gallery-thumbnails {
+          display: none;
         }
 
         .title h1 {
-          font-size: 1.2em;
+          font-size: 2.2em;
         }
 
         .prose {
           text-align: left;
           font-size: 0.9rem;
         }
+
+        .caracteristica-key {
+          font-size: 0.9rem;
+        }
+
+        .date {
+          display: none;
+        }
+        
+        .resumen{
+          font-size: 0.9em;
+        }
+
+       
       }
 
       /* Responsivo */
@@ -559,7 +650,7 @@ const { title, description, pubDate, updatedDate, heroImage, galleryImages } =
 
           <div class="info-column">
             <div class="title">
-              <h1>{title}</h1>
+              <h1>{name}</h1>
               <p class="date">
                 <FormattedDate date={pubDate} />
                 {
@@ -572,15 +663,36 @@ const { title, description, pubDate, updatedDate, heroImage, galleryImages } =
                 }
               </p>
             </div>
+            <div class="resumen">
+              {resumen && <div>{resumen}</div>}
+             
+            </div>
+            <div class="caracteristicas">
 
-            <slot name="resumen" />
-            <a
-              href="https://wa.me/51997307782?text=Hola,%20quiero%20más%20información%20sobre%20sus%20productos"
-              class="btn-premium-prod"
-            >
-              <img src={logo1.src} alt="WhatsApp" class="whatsapp-icon" />
-              Pedir
-            </a>
+             {
+                caracteristicas && caracteristicas.length > 0 && (
+                  <div class="caracteristicas">
+                    <ul>
+                      {caracteristicas.map((caracteristica) => {
+                        const [key, ...rest] = caracteristica.split(':');
+                        return <li><span class="caracteristica-key">{key}:</span>{rest.join(':')}</li>;
+                      })}
+                    </ul>
+                  </div>
+                )
+              }
+            </div>
+
+            <div class="detail-info">
+              {precio && <div class="precio">{precio}</div>}
+              <a
+                href="https://wa.me/51997307782?text=Hola,%20quiero%20más%20información%20sobre%20sus%20productos"
+                class="btn-premium-prod"
+              >
+                <img src={logo1.src} alt="WhatsApp" class="whatsapp-icon" />
+                Pedir
+              </a>
+            </div>
           </div>
         </div>
 
