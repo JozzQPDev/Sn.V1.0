@@ -1,4 +1,3 @@
-
 # SANYA SERVICIOS GENERALES S.A.C - Sitio Web
 
 Bienvenido al repositorio del sitio web oficial de **SANYA SERVICIOS GENERALES S.A.C**, una empresa dedicada a ofrecer productos naturales, frescos y saludables. Este sitio web está construido con [Astro](https://astro.build/), un framework moderno para sitios web estáticos y dinámicos, enfocado en rendimiento, SEO y facilidad de mantenimiento.
@@ -96,6 +95,18 @@ mi-proyecto-astro/
 - **src/content/**: Contenido estructurado en colecciones. Usa `getCollection()` para recuperar posts/productos.
 - **src/components/**: Componentes reutilizables. `BaseHead.astro` maneja SEO; `Header.astro` incluye menú móvil con JavaScript.
 - **src/assets/**: Imágenes procesadas por Astro (optimización automática).
+
+## SEO y Meta Tags
+
+La gestión de las etiquetas meta para SEO, incluyendo las etiquetas Open Graph para redes sociales, se realiza en el componente `src/components/BaseHead.astro`. Allí se definen dinámicamente etiquetas como:
+
+- `<meta property="og:type" content="website" />`
+- `<meta property="og:url" content={Astro.url} />`
+- `<meta property="og:title" content={title} />`
+- `<meta property="og:description" content={description} />`
+- `<meta property="og:image" content={new URL(image.src, Astro.url)} />`
+
+Actualmente, la etiqueta `<meta property="og:site_name" content="Link preview site name">` no está presente de manera literal en el código, pero puede ser fácilmente añadida o modificada en este componente para personalizar el nombre del sitio para vistas previas en redes sociales.
 
 ## 🚀 Instalación y Configuración
 
@@ -201,5 +212,3 @@ Para más ayuda, consulta la [documentación de Astro](https://docs.astro.build)
 - **Tecnologías**: Astro, MDX, TypeScript, CSS, Font Awesome.
 
 ¡Gracias por contribuir al crecimiento de SANYA SERVICIOS GENERALES S.A.C!
-
-
